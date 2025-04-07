@@ -1,0 +1,20 @@
+My to do list:  
+
+1) Research the dataset 
+
+2) add dataset to project repo. hitml? csv? 
+
+3) **read_dataset.py** import dataset and read it -- use numpy or pandas. 
+
+4) **summary.py** generate summary file about the variables (features??) -- create module 
+
+5) **histograms.py** investigate the dataset. generate histograms and save them -- create module 
+
+6) **scatter_plots.py** investigate the dataset. generate scatter plots and save them. 
+
+7) **analyse.py** plug all modules in the main file
+
+8) **raise errors and add logging** in analyse.py 
+
+
+
