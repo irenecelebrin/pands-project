@@ -1,10 +1,11 @@
 My to do list:  
 
-1) Research the dataset 
+1) Research the dataset
 
-2) add dataset to project repo. hitml? csv? 
+2) add dataset to project repo. hitml? csv?  
 
 3) **read_dataset.py** import dataset and read it -- use numpy or pandas. 
+Instead of printing in the console, store inside variables and print to a file for the summary 
 
 4) **summary.py** generate summary file about the variables (features??) -- create module 
 
