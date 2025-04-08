@@ -7,7 +7,18 @@ My to do list:
 3) **read_dataset.py** import dataset and read it -- use numpy or pandas. 
 Instead of printing in the console, store inside variables and print to a file for the summary 
 
-4) **summary.py** generate summary file about the variables (features??) -- create module 
+4) **summary.py** generate summary of each variable  -- create module 
+Data to be included in the summary:
+Target: 
+- names 
+Features: 
+- names 
+- unique values (measure of variation)
+- average 
+- min 
+- max 
+- mean
+- standard deviation 
 
 5) **histograms.py** investigate the dataset. generate histograms and save them -- create module 
 
