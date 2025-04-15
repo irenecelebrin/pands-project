@@ -19,10 +19,11 @@ Matplotlib.pyplot
 
 The **Iris flower dataset** was created by the British biologist and statistician Ronald Fisher and first published in 1936 in *The use of multiple measurements in taxonomic problems*. 
 The dataset includes 150 samples (50 each) from 3 different species of Iris flower: *Iris Setosa**, **Iris Virginica**, **Iris Versicolor**. 
-For each sample in the dataset, the following variables are provided: 
+For each sample in the dataset, the following 5 variables are provided: 
 - 4 Features: **Sepal length**, **Sepal width**, **Petal length**, **Petal width**. These measurements are expressed in cm.  
 - 1 Target: 3 different Iris species (see above). These are also called classes. 
 (source: https://en.wikipedia.org/wiki/Iris_flower_data_set)
+In this project, features will be considered and **ndipendent variables* and target as *dependent variable* (source: https://www.kaggle.com/code/lalitharajesh/iris-dataset-exploratory-data-analysis )
 
 The dataset also includes metadata about variable names, class distribution and references to papers investigating the dataset. 
 
@@ -32,13 +33,14 @@ The Iris dataset is commonly used as a beginner's dataset to approach machine le
 
 ## The analysis 
 
-The dataset is included in this repository for reference purposes. However, it is also imported from the module Sklearn.datasets to make it easier to load and explore the data and metadata. 
+The dataset is included in this repository for reference purposes. However, in the program the dataset is also imported from the module Sklearn.datasets to make it easier to load and explore the data. 
 
-Analysis.py is an program that allows to perform several functions. 
+**analysis.py**
+This is the main program, and it allows to perform several functions. 
 Each component of the program was developed individually and is imported in the main python file as external module.
 All modules are independent, so if a module is not required, it can be commented and the program run without it. 
 
-The components of the program are: 
+The modules included in the main program are: 
 
 1) read_dataset.py 
 This module will print in the console a brief description of the dataset. It can be used by the user to verify the properties of the dataset. The information includes: 
@@ -52,14 +54,19 @@ This module will print in the console a brief description of the dataset. It can
 
 2) summary.py 
 This module creates a text file with a summary of the variables included in the dataset: 
-For features:
-- names 
-- max, min, avg, mean, std, unique values 
-For target
+For independent variables (features):
+- name
+- sample number in the dataset
+- mathematical calculations: max, min, avg, mean, std, unique values 
+For dependent variable (target)
+- sample number in the dataset
+- unique values number
 - names
 - unique values 
 
-3) hist.py
+3) histograms.py
+This modules loads the iris dataset and creates histograms for each feature and saves the histograms to .pgn files. 
+Source for the histograms: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html
 
 4) scatter.py 
 
