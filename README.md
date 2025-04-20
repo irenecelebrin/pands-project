@@ -35,25 +35,33 @@ The Iris dataset is commonly used as a beginner's dataset to approach machine le
 
 The dataset is included in this repository for reference purposes. However, in the program the dataset is also imported from the module Sklearn.datasets to make it easier to load and explore the data. 
 
-**analysis.py**
+### analysis.py
+**How it works** 
 This is the main program, and it allows to perform several functions. 
 Each component of the program was developed individually and is imported in the main python file as external module.
 All modules are independent, so if a module is not required, it can be commented and the program run without it. 
 
 The modules included in the main program are: 
+1) read_dataset
+2) summary
+3) histograms
+4) scatter
 
-1) read_dataset.py 
-This module will print in the console a brief description of the dataset. It can be used by the user to verify the properties of the dataset. The information includes: 
-
+### 1. Reading the dataset 
+**What it does**
+Read_dataset.py will print in the console a brief description of the dataset. It can be used by the user to verify the properties of the dataset. The information includes: 
 - Shape of the dataset (n. of instances, n. of columns)
 - Names of the features
 - Names of the target classes 
 - Preview of the first rows of the dataset
 - Keys of the datset. 
 
+**Looking at the output**
 
-2) summary.py 
-This module creates a text file with a summary of the variables included in the dataset: 
+
+### 2. summary.py 
+**What it dooes**
+Summary.py creates a text file with a summary of the variables included in the dataset: 
 For independent variables (features):
 - name
 - sample number in the dataset
@@ -64,11 +72,28 @@ For dependent variable (target)
 - names
 - unique values 
 
-3) histograms.py
-This modules loads the iris dataset and creates histograms for each feature and saves the histograms to .pgn files. 
-Source for the histograms: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html
 
-4) scatter.py 
+### 3. Histograms 
+**What it does**
+Histograms.py loads the iris dataset and creates histograms for each feature and saves the histograms to .pgn files. 
+Reference: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html
+
+**About the histograms** 
+
+### 4. scatter.py 
+**What it does**
+This modules loads the iris dataset and creates scatter plots for each pair of features: sepal length vs sepal width, petal length vs petal width. 
+Reference: 
+scatter plots https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
+scatter plot with legend: https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_with_legend.html
+grid: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html
+ticks: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticks.html
+
+**About the scatter plots**
+- **Sepal** As for sepal length, for Iris Setosa the correlation bwteen sepal lenght and width show a clear trend, and makes the class easy to distinguish from the others. On the other hand, Iris Versicolor and Iris Virginica look quite similar and can't be easily distinguished one from the other. The only difference is that Versicolor samples tend to have smaller dimensions (there are mostly located in the lower part of the plot, on the left), while Virginica samples seem to be bigger in dimension (lower part of the plot, but on the right). If only Petal length and width are considered, it is possible to predict if a sample is Iris Setosa or not with a high degree of certainty, whereas it would be harder to predict if a sample is Virginica or Versicolor. 
+- **Petal** As for petal length, a clear trend is visible from the plot. It looks like each class has its own characteristic dimensions -- smaller for Iris Setosa, bigger for Versicolor and more so for Virginica. Again, Iris Setosa is clearly separated from the other two classes. Versicolor and Virginica, although easy enough to separate, share a common area where samples have similar features but belong to one class or the other. 
+
+
 
 5) ...
 

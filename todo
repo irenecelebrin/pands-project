@@ -20,7 +20,7 @@ Data to be included in the summary:
 Target: 
 - names 
 
-5) **histograms.py** investigate the dataset. generate histograms and save them -- create module 
+5) **histograms.py** investigate the dataset. generate histograms and save them -- create function and import module  
 
 6) **scatter_plots.py** investigate the dataset. generate scatter plots and save them. 
 

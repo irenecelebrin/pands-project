@@ -13,4 +13,3 @@ read()
 ind_var()
 dep_var()
 
-# 
