@@ -5,31 +5,31 @@ This repository includes a programmatic analysis and plotting of the Iris datase
 
 ##  Requirements 
 
-Requirements to run the code:
-The code can be interpreted with python 3.12.
-Required modules include: 
+Requirements to run the code: The code can be interpreted with python 3.12.
 
-Sklearn.datasets 
-Pandas
-Numpy
-Matplotlib.pyplot 
+A number of external libraries are used in this project: a complete list is provided in the file [*requirements.txt*](.\requirements.txt). 
+
+To run the code, make sure these libraries are installed on your machine. If you are running the code in a codespace, they should already be installed. You can install them in two ways: 
+1) individually, running the command 'pip install *library name*'
+2) all together, running the command 'pip pip install -r requirements.txt'
+
 
 
 ## The dataset 
 
 The **Iris flower dataset** was created by the British biologist and statistician Ronald Fisher and first published in 1936 in *The use of multiple measurements in taxonomic problems*. 
-The dataset includes 150 samples (50 each) from 3 different species of Iris flower: *Iris Setosa**, **Iris Virginica**, **Iris Versicolor**. 
+The dataset includes 150 samples (50 each) from 3 different species of Iris flower: **Iris Setosa**, **Iris Virginica**, **Iris Versicolor**. 
 For each sample in the dataset, the following 5 variables are provided: 
 - 4 Features: **Sepal length**, **Sepal width**, **Petal length**, **Petal width**. These measurements are expressed in cm.  
 - 1 Target: 3 different Iris species (see above). These are also called classes. 
-(source: https://en.wikipedia.org/wiki/Iris_flower_data_set)
-In this project, features will be considered and **ndipendent variables* and target as *dependent variable* (source: https://www.kaggle.com/code/lalitharajesh/iris-dataset-exploratory-data-analysis )
+(source: [Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set))
+In this project, features will be considered and **ndipendent variables* and target as *dependent variable* (source: [Iris Dataset - Exploratory Data Analysis](https://www.kaggle.com/code/lalitharajesh/iris-dataset-exploratory-data-analysis)). 
 
 The dataset also includes metadata about variable names, class distribution and references to papers investigating the dataset. 
 
-The dataset was used by Fisher himself as an example for Linear Discriminant Analysis. The goal of LDA is to find a Linear Combination (or direct correlation) between features to prove that they characterise or seprate given classes of objects (in this case, the 3 iris species). This means that with the iris dataset a user can find and analyse the correlation of 2 or more features in the dataset. For example, by looking at the features of a sample, the corresponding iris species can be guessed. (source: https://en.wikipedia.org/wiki/Linear_discriminant_analysis)
+The dataset was used by Fisher himself as an example for Linear Discriminant Analysis. The goal of LDA is to find a Linear Combination (or direct correlation) between features to prove that they characterise or separate  given classes of objects (in this case, the 3 iris species). This means that with the iris dataset a user can find and analyse the correlation of 2 or more features in the dataset. For example, by looking at the features of a sample, the corresponding iris species can be guessed. (source: [Linear discriminant analysis](https://en.wikipedia.org/wiki/Linear_discriminant_analysis)). 
 
-The Iris dataset is commonly used as a beginner's dataset to approach machine learning for classification, data mining and clustering (source: http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html)
+The Iris dataset is commonly used as a beginner's dataset to approach machine learning for classification, data mining and clustering (source: [Data Science Example - Iris dataset](http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html)).
 
 ## The analysis 
 
@@ -37,6 +37,7 @@ The dataset is included in this repository for reference purposes. However, in t
 
 ### analysis.py
 **How it works** 
+
 This is the main program, and it allows to perform several functions. 
 Each component of the program was developed individually and is imported in the main python file as external module.
 All modules are independent, so if a module is not required, it can be commented and the program run without it. 
@@ -49,24 +50,27 @@ The modules included in the main program are:
 
 ### 1. Reading the dataset 
 **What it does**
+
 Read_dataset.py will print in the console a brief description of the dataset. It can be used by the user to verify the properties of the dataset. The information includes: 
 - Shape of the dataset (n. of instances, n. of columns)
 - Names of the features
 - Names of the target classes 
 - Preview of the first rows of the dataset
 - Keys of the datset. 
+Additionally, this script allows the user to input a key of the dataset, and view corresponding value. 
 
 **Looking at the output**
 
 
 ### 2. summary.py 
-**What it dooes**
+**What it does**
+
 Summary.py creates a text file with a summary of the variables included in the dataset: 
 For independent variables (features):
 - name
 - sample number in the dataset
 - mathematical calculations: max, min, avg, mean, std, unique values 
-For dependent variable (target)
+For dependent variable (target, or class)
 - sample number in the dataset
 - unique values number
 - names

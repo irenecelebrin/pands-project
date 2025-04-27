@@ -24,9 +24,17 @@ Target:
 
 6) **scatter_plots.py** investigate the dataset. generate scatter plots and save them. 
 
-7) **analyse.py** plug all modules in the main file
+7) feature boxplots 
 
-8) **raise errors and add logging** in analyse.py 
+8) violin plots 
+
+9) heatmap 
+
+10) fitting a line 
+
+11) **analyse.py** plug all modules in the main file
+
+12) **raise errors and add logging** in analyse.py 
 
 Questions: 
 - does it make sense to creare an object for features and use throughout the project? 

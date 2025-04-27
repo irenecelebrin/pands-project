@@ -66,3 +66,6 @@ def dependent_variables_summary():
         variable.write(f'Target values:\t{target_values}\n')
         variable.write('\n')
 
+def summary(): 
+    independent_variables_summary()
+    dependent_variables_summary()

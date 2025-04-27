@@ -1,8 +1,9 @@
 # Analyse -- main program for the project
 
-from read_dataset import read
-from summary import independent_variables_summary as ind_var
-from summary import dependent_variables_summary as dep_var
+from modules.read_dataset import read
+from modules.summary import summary
+from modules.histograms import plot_histograms
+
 
 
 # print in the console some information about the dataset. Enter a key to explore the dataset.
@@ -10,6 +11,9 @@ from summary import dependent_variables_summary as dep_var
 read()
 
 # Save a summary of independent and dependent variables to a txt file (variables.txt) 
-ind_var()
-dep_var()
+summary()
 
+# Plot histograms for each feature, and save them as .pgn files in a folder called 'Histograms'. 
+plot_histograms()
+
+# Plot scatter plots comparing Sepal length vs Sepal width, and Petal length vs petal width, and save them as .png files in a folder called 'Scatterplots'.

@@ -2,11 +2,17 @@
 # This script allow to create scatter plots analysing the relationships between the features of the iris dataset: 
 # sepal length vs sepal width, petal length vs petal width.
 
-# import required modules: sklearn.datasets, matplotlib.pyplot, numpy 
+# import required modules: sklearn.datasets, matplotlib.pyplot, numpy, os 
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np 
+import os 
+
+
+# create directory to save the plots 
+if not os.path.exists('scatterplots'):
+    os.makedirs('scatterplots')
 
 # import the dataset 
 iris = load_iris()
@@ -57,7 +63,7 @@ ax.grid(which='minor', color='gray', linestyle='--', linewidth=0.25, alpha=0.5)
 # plt.show()
 
 # save the plot to a .png file in the 'scatter_plots' folder
-plt.savefig('./scatter_plots/sepal')
+plt.savefig('./scatterplots/sepal')
 
 
 # PETAL LENGTH vs PETAL WIDTH   
@@ -88,5 +94,5 @@ ax.grid(which='minor', color='gray', linestyle='--', linewidth=0.25, alpha=0.5)
 # plt.show()
 
 # save the plot to a .png file in the 'scatter_plots' folder
-plt.savefig('./scatter_plots/petal')
+plt.savefig('./scatterplots/petal')
 
