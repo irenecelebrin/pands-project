@@ -6,9 +6,21 @@ import pandas as pd
 from sklearn.datasets import load_iris
 import os
 
-# create directory to save the plots 
-if not os.path.exists('plots'):
-    os.makedirs('plots')
+# Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
+# Get the directory where this script is located
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Get the parent directory of the script
+parent_dir = os.path.dirname(script_dir)
+
+# Define the path to the 'plots' folder inside the repo
+plot_dir = os.path.join(parent_dir, 'plots')
+
+# Create the folder if it doesn't exist
+os.makedirs(plot_dir, exist_ok=True)
+
+summary_path = os.path.join(plot_dir, '02_summary.txt')
+
 
 # load the iris dataset 
 iris = load_iris()
@@ -41,7 +53,7 @@ def independent_variables_summary():
     # Create a text file to save the summary of the independent variables
     # Create a loop to iterate the feature names, apply the functions created above and save the results to a text file 
     i = 0
-    with open('./plots/2_summary.txt', 'w') as variable: 
+    with open(summary_path, 'w') as variable: 
         variable.write('Independent Variables:\n')
         for name in iris.feature_names: 
             variable.write(f'Feature name:\t{name.capitalize()}\n')
@@ -70,7 +82,7 @@ def dependent_variables_summary():
     target_values = np.unique(iris.target)
 
     # append to the text a summary of the dependent variables (targets)
-    with open('./plots/2_summary.txt', 'a') as variable: 
+    with open(summary_path, 'a') as variable: 
         variable.write('Dependent Variables:\n')
         variable.write(f'Samples:\t\t{target_size}\n')
         variable.write(f'Unique:\t\t\t{target_unique}\n')

@@ -10,11 +10,24 @@ import numpy as np
 import os 
 
 def plot_boxplots():    
-    # create directory to save the plots 
-    if not os.path.exists('plots'):
-        os.makedirs('plots')
 
-    # import the dataset 
+    # Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Get the parent directory of the script
+    parent_dir = os.path.dirname(script_dir)
+
+    # Define the path to the 'plots' folder inside the repo
+    plot_dir = os.path.join(parent_dir, 'plots')
+
+    # Create the folder if it doesn't exist
+    os.makedirs(plot_dir, exist_ok=True)
+
+    plot_path = os.path.join(plot_dir, '04')
+
+
+    # Import the dataset 
     iris = load_iris()
 
     # set labels for each feature
@@ -53,7 +66,7 @@ def plot_boxplots():
     # uncomment to show plot
     # plt.show()
     # save plot to .png file 
-    plt.savefig('plots/4_boxplots.png')
+    plt.savefig(f'{plot_path}_boxplots.png')
 
 if __name__ == '__main__':
     plot_boxplots()

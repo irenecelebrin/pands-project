@@ -10,9 +10,21 @@ import numpy as np
 import os 
 
 def plot_scatter():
-    # create directory to save the plots 
-    if not os.path.exists('plots'):
-        os.makedirs('plots')
+    # Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Get the parent directory of the script
+    parent_dir = os.path.dirname(script_dir)
+
+    # Define the path to the 'plots' folder inside the repo
+    plot_dir = os.path.join(parent_dir, 'plots')
+
+    # Create the folder if it doesn't exist
+    os.makedirs(plot_dir, exist_ok=True)
+
+    plot_path = os.path.join(plot_dir, '05')
+
 
     # import the dataset 
     iris = load_iris()
@@ -63,7 +75,7 @@ def plot_scatter():
     # plt.show()
 
     # save the plot to a .png file in the 'scatter_plots' folder
-    plt.savefig('./plots/5_sepal.png')
+    plt.savefig(f'{plot_path}_sepal.png')
 
 
     # PETAL LENGTH vs PETAL WIDTH   
@@ -94,7 +106,7 @@ def plot_scatter():
     # plt.show()
 
     # save the plot to a .png file in the 'scatter_plots' folder
-    plt.savefig('./plots/5_petal.png')
+    plt.savefig(f'{plot_path}_petal.png')
 
 
 if __name__ == '__main__':
