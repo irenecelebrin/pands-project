@@ -7,6 +7,7 @@ from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np 
+import pandas as pd
 import os 
 
 
@@ -14,60 +15,6 @@ import os
 if not os.path.exists('scatterplots'):
     os.makedirs('scatterplots')
 
-# import the dataset 
-iris = load_iris()
+iris_data = pd.read_csv('./iris/iris.data')
 
-# store features in different variables 
-sepal_length = iris.data[:, 0]
-sepal_width = iris.data[:, 1]   
-petal_length = iris.data[:, 2]
-petal_width = iris.data[:, 3]
-
-# Prepare class colors for both plots. In each plots, classes (iris species) will be represented by different colors. 
-# Colors need to be arrays. Reference: https://jamesmccaffrey.wordpress.com/2020/10/22/making-a-python-scatter-plot-with-different-colors-for-different-labels/ 
-# reference: https://matplotlib.org/stable/gallery/color/named_colors.html
-colormap_sepal = np.array(['palegreen', 'limegreen', 'green'])
-colormap_petal = np.array(['orchid', 'mediumvioletred', 'pink'])
-
-# Plotting the data 
-# reference: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
-
-# Create subplot for sepal length vs sepal width
-
-
-# create function to plot a scatter plot. Required parameters are: x, y, colormap (colors) and feayure couple (sepal/petal)
-def plot_scatter(x,y,colormap,sepal_petal):
-
-    fig, ax = plt.subplots()
-    
-    plot = ax.scatter(x, y, c=colormap[iris.target], marker='8')
-
-    # Create legend using feature_names 
-    # from chatGPT https://chatgpt.com/share/67f2c42b-a108-800f-9b47-c15d529b5264 
-    legend_elements = [Line2D([0], [0], marker='8', color='w', label=label,
-                            markerfacecolor=color, markersize=10)
-                    for label, color in zip(iris.target_names, colormap)]
-    ax.legend(handles=legend_elements, loc="upper left", title="Iris variety")
-
-    # Add labels and title 
-    ax.set_xlabel(f'{sepal_petal} length (cm)')
-    ax.set_ylabel(f'{sepal_petal} width (cm)')
-    ax.set_title(f'{sepal_petal} length vs {sepal_petal} width')
-
-    # Personalise grid and ticks
-    # Grid: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html
-    # Ticks: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticks.html
-    ax.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
-    ax.set_xticks(np.arange(4.25,8.25,0.5), minor=True)
-    ax.set_yticks(np.arange(2.25,4.75,0.5), minor=True)
-    ax.grid(which='minor', color='gray', linestyle='--', linewidth=0.25, alpha=0.5)
-
-    # uncomment to print the plot 
-    # plt.show()
-
-    # save the plot to a .png file in the 'scatter_plots' folder
-    plt.savefig(f'scatterplots/{sepal_petal}')
-
-plot_scatter(sepal_length,sepal_width, colormap_sepal, 'Sepal')
-plot_scatter(petal_length, petal_width, colormap_petal, 'Petal')
-
+print(iris_data.describe()) 

@@ -7,8 +7,8 @@ import os
 
 def plot_histograms():
     # create directory to save the plots 
-    if not os.path.exists('histograms'):
-        os.makedirs('histograms')
+    if not os.path.exists('plots'):
+        os.makedirs('plots')
 
     # load iris dataset 
     iris = load_iris()
@@ -32,9 +32,10 @@ def plot_histograms():
         plt.xlabel('Dimensions (in cm)')
         plt.ylabel('N. in the dataset')
         plt.title(feature.replace('_', ' ').capitalize())
-        plt.savefig(f'./histograms/{feature}.png')
+        plt.savefig(f'./plots/3_hist_{feature}.png')
         plt.close()
         i += 1
 
 
-plot_histograms()
+if __name__ == '__main__':
+    plot_histograms()
