@@ -4,29 +4,13 @@
 import numpy as np 
 import pandas as pd
 from sklearn.datasets import load_iris
-import os
-
-# Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
-# Get the directory where this script is located
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Get the parent directory of the script
-parent_dir = os.path.dirname(script_dir)
-
-# Define the path to the 'plots' folder inside the repo
-plot_dir = os.path.join(parent_dir, 'plots')
-
-# Create the folder if it doesn't exist
-os.makedirs(plot_dir, exist_ok=True)
-
-summary_path = os.path.join(plot_dir, '02_summary.txt')
 
 
 # load the iris dataset 
 iris = load_iris()
 
 # create function to get the summary of the variables in the iris dataset and save it a text file 
-def independent_variables_summary():
+def independent_variables_summary(summary_path):
 
     # store feature names in a variable  
     feature_names = iris.feature_names
@@ -67,7 +51,7 @@ def independent_variables_summary():
             i += 1
 
 
-def dependent_variables_summary(): 
+def dependent_variables_summary(summary_path): 
 
     # store target names in a variable
     target_names = iris.target_names 
@@ -91,9 +75,9 @@ def dependent_variables_summary():
         variable.write('\n')
 
 
-def summary(): 
-    independent_variables_summary()
-    dependent_variables_summary()
+def summary(summary_path): 
+    independent_variables_summary(summary_path)
+    dependent_variables_summary(summary_path)
 
 if __name__ == '__main__':  
     summary()

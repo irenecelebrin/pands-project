@@ -7,36 +7,18 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np 
 import pandas as pd
-import os 
-
-
-# Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
-# Get the directory where this script is located
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Get the parent directory of the script
-parent_dir = os.path.dirname(script_dir)
-
-# Define the path to the 'plots' folder inside the repo
-plot_dir = os.path.join(parent_dir, 'plots')
-
-# Create the folder if it doesn't exist
-os.makedirs(plot_dir, exist_ok=True)
-
-plot_path = os.path.join(plot_dir, '06')
-
 
 # load the iris dataset 
 iris = load_iris()
 
-def correlation_heatmap():
+# prepare feature labels 
+feature_labels = iris.feature_names
 
-    # prepare feature labels 
-    feature_labels = iris.feature_names
+# Calculate correlation coefficients: the results is a 4x4 matrix which shows the correlation between each pair of features
+# Source: https://numpy.org/doc/2.2/reference/generated/numpy.corrcoef.html
+correlation_matrix = np.corrcoef(iris.data, rowvar=False).round(decimals=2)
 
-    # Calculate correlation coefficients: the results is a 4x4 matrix which shows the correlation between each pair of features
-    # Source: https://numpy.org/doc/2.2/reference/generated/numpy.corrcoef.html
-    correlation_matrix = np.corrcoef(iris.data, rowvar=False).round(decimals=2)
+def heatmap():
 
     # Create subplot and plot 
     # About colormaps https://matplotlib.org/stable/users/explain/colors/colormaps.html#sphx-glr-users-explain-colors-colormaps-py
@@ -60,13 +42,12 @@ def correlation_heatmap():
     cbar = ax.figure.colorbar(im, ax= ax, format='% .2f')
     cbar.set_label("Pearson's correlation coefficient", rotation=270, labelpad=20)
 
-    # uncomment to show the plot 
-    # plt.show()
-
+def save_heatmap(plot_path):
+    heatmap()
     # save the plot as a png file in the 'plots' folder
     plt.savefig(f'{plot_path}_heatmap', dpi=300, bbox_inches='tight')
 
-    # Save correlation matrix to a .csv file 
+def save_correlation_matrix(plot_path):    
     # Create a pandas DataFrame from the correlation matrix
     df = pd.DataFrame(correlation_matrix, columns=feature_labels, index=feature_labels)
 
@@ -75,5 +56,5 @@ def correlation_heatmap():
 
 
 if __name__ == "__main__":
-    correlation_heatmap()
-
+    heatmap()
+    plt.show()

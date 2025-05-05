@@ -7,25 +7,8 @@ from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import numpy as np 
-import os 
 
 def plot_boxplots():    
-
-    # Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
-    # Get the directory where this script is located
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Get the parent directory of the script
-    parent_dir = os.path.dirname(script_dir)
-
-    # Define the path to the 'plots' folder inside the repo
-    plot_dir = os.path.join(parent_dir, 'plots')
-
-    # Create the folder if it doesn't exist
-    os.makedirs(plot_dir, exist_ok=True)
-
-    plot_path = os.path.join(plot_dir, '04')
-
 
     # Import the dataset 
     iris = load_iris()
@@ -63,10 +46,10 @@ def plot_boxplots():
     ax.set_xlabel('Features')
     ax.set_ylabel('Measure (in cm)')
 
-    # uncomment to show plot
-    # plt.show()
-    # save plot to .png file 
-    plt.savefig(f'{plot_path}_boxplots.png')
+def save_boxplots(plot_path):
+    plot_boxplots()
+    plt.savefig(f'{plot_path}_boxplots.png', dpi=300, bbox_inches='tight')
 
 if __name__ == '__main__':
     plot_boxplots()
+    plt.show()

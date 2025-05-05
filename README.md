@@ -13,8 +13,10 @@ This repository includes the final project for the course 'Programming and Scrip
     - read_dataset.py
     - summary.py
     - histograms.py
+    - boxplots
     - scatter.py
-    - 
+    - linear_regression.py
+    - heatmap.py
 - analyse.py
 
 

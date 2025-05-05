@@ -1,12 +1,13 @@
-# Scatter plots 
-# This script allows to create scatter plots analysing the relationships between the features of the iris dataset: 
-# sepal length vs sepal width, petal length vs petal width.
+# Line fitting 
+# This script calculates linear regression for both scatter plots (Petal, Sepal). It uses Scipy to find the slope and intercept of a line that best fits the data. It then plots the data points and the fitted line.
+# Official documentation on SciPy: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html
 
-# import required modules: sklearn.datasets, matplotlib.pyplot, numpy, os 
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+import scipy as sp
 import numpy as np 
+
 
 # import the dataset 
 iris = load_iris()
@@ -23,13 +24,18 @@ petal_width = iris.data[:, 3]
 colormap_sepal = np.array(['palegreen', 'limegreen', 'green'])
 colormap_petal = np.array(['orchid', 'mediumvioletred', 'pink'])
 
-def scatter_sepal():
+def sepal_regression():
 
-    # Plotting the data 
-    # reference: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
+    # Calculate linear regression for sepal length vs sepal width. From there, extract slope and intercept.
+    sepal_res = sp.stats.linregress(sepal_length, sepal_width)
+    slope_sepal = sepal_res.slope
+    intercept_sepal = sepal_res.intercept
+
+    # Get line equation: y = mx + c, where m is the slope and c is the intercept.
+    sepal_equation = f'W = {slope_sepal:.2f}L + {intercept_sepal:.2f}'
+    
+    # Re-create the scatter plot from 5. Source: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
     fig, ax = plt.subplots()
-
-    # Create subplot for sepal length vs sepal width
     # SEPAL LENGTH vs SEPAL WIDTH
     plot = ax.scatter(sepal_length, sepal_width, c=colormap_sepal[iris.target], marker='8')
 
@@ -40,10 +46,6 @@ def scatter_sepal():
                     for label, color in zip(iris.target_names, colormap_sepal)]
     ax.legend(handles=legend_elements, loc="upper left", title="Iris variety")
 
-    # Add labels and title 
-    ax.set_xlabel('Sepal length (cm)')
-    ax.set_ylabel('Sepal width (cm)')
-    ax.set_title('Sepal length vs Sepal width')
 
     # Personalise grid and ticks
     # Grid: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html
@@ -54,10 +56,32 @@ def scatter_sepal():
     ax.grid(which='minor', color='gray', linestyle='--', linewidth=0.25, alpha=0.5)
 
 
-def scatter_petal():
+    # Add line to the plot 
+    sepal_regression = ax.plot(sepal_length, slope_sepal * sepal_length + intercept_sepal, color='blue',label=sepal_equation)
 
-    # PETAL LENGTH vs PETAL WIDTH   
+    # Set new legend, title and axes labels 
+    ax.legend()
+    ax.set_xlabel('Sepal length (L)')
+    ax.set_ylabel('Sepal width (W)')
+    ax.set_title('Iris Sepal: regression line')
+
+    # save the plot to a png file 
+    #plt.savefig(f'{path_plot}_sepal_regression.png')
+
+
+def petal_regression(): 
+
+    # Calculate linear regression for petal length vs petal width. From there, extract slope and intercept.
+    petal_res = sp.stats.linregress(petal_length, petal_width)
+    slope_petal = petal_res.slope
+    intercept_petal = petal_res.intercept
+
+    # Get line equation: y = mx + c, where m is the slope and c is the intercept.
+    petal_equation = f'W = {slope_petal:.2f}L + {intercept_petal:.2f}'
+
+    # Recreate the scatter plot from 5. 
     fig, ax = plt.subplots()
+    # PETAL LENGTH vs PETAL WIDTH   
 
     # Repeat the same steps, but using for ax x petal length, for ax y petal width, as as colormapa colormap_petal
     plot = ax.scatter(petal_length,petal_width, c=colormap_petal[iris.target], marker='8')
@@ -68,11 +92,6 @@ def scatter_petal():
                     for label, color in zip(iris.target_names, colormap_petal)]
     ax.legend(handles=legend_elements, loc="upper left", title="Iris variety")
 
-    # Add labels and title 
-    ax.set_xlabel('Petal length (cm)')
-    ax.set_ylabel('Petal width (cm)')
-    ax.set_title('Petal length vs Petal width')
-
     # personalise grid and ticks 
     ax.grid(color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
     ax.set_xticks(np.arange(0.5,7.5,1), minor=True)
@@ -80,8 +99,20 @@ def scatter_petal():
     ax.grid(which='minor', color='gray', linestyle='--', linewidth=0.25, alpha=0.5)
 
 
-def save_scatter(plot_path):
-    scatter_sepal()
-    plt.savefig(f'{plot_path}_sepal.png', dpi=300, bbox_inches='tight')
-    scatter_petal()
-    plt.savefig(f'{plot_path}_petal.png', dpi=300, bbox_inches='tight')
+    # Derive the fitted line using the slope and intercept, following the foruma y = mx + c, where m is the slope and c is the intercept.
+    petal_regression = ax.plot(petal_length, slope_petal * petal_length + intercept_petal, color='blue',label=petal_equation)
+    
+    # Add new legend, title and axes labels
+    ax.legend()
+    ax.set_xlabel('Petal length (L)')
+    ax.set_ylabel('Petal width (W)')
+    ax.set_title('Iris Petal: regression line') 
+
+def save_regression(path_plot):
+    sepal_regression()
+    plt.savefig(f'{path_plot}_sepal_regression.png', dpi=300, bbox_inches='tight')
+    petal_regression()
+    plt.savefig(f'{path_plot}_petal_regression.png', dpi=300, bbox_inches='tight')
+
+
+

@@ -5,22 +5,7 @@ from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 import os 
 
-def plot_histograms():
-    # Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
-    # Get the directory where this script is located
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Get the parent directory of the script
-    parent_dir = os.path.dirname(script_dir)
-
-    # Define the path to the 'plots' folder inside the repo
-    plot_dir = os.path.join(parent_dir, 'plots')
-
-    # Create the folder if it doesn't exist
-    os.makedirs(plot_dir, exist_ok=True)
-
-    plot_path = os.path.join(plot_dir, '03')
-
+def plot_histograms(plot_path):
 
     # load iris dataset 
     iris = load_iris()
@@ -44,10 +29,11 @@ def plot_histograms():
         plt.xlabel('Dimensions (in cm)')
         plt.ylabel('N. in the dataset')
         plt.title(feature.replace('_', ' ').capitalize())
-        plt.savefig(f'{plot_path}_{feature}.png')
+        plt.savefig(f'{plot_path}_{feature}.png', dpi=300, bbox_inches='tight')
         plt.close()
         i += 1
 
 
 if __name__ == '__main__':
     plot_histograms()
+    plt.show()
