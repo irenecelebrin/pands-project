@@ -9,37 +9,25 @@ from matplotlib.lines import Line2D
 import numpy as np 
 import os 
 
-def plot_scatter():
-    # Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
-    # Get the directory where this script is located
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Get the parent directory of the script
-    parent_dir = os.path.dirname(script_dir)
-
-    # Define the path to the 'plots' folder inside the repo
-    plot_dir = os.path.join(parent_dir, 'plots')
-
-    # Create the folder if it doesn't exist
-    os.makedirs(plot_dir, exist_ok=True)
-
-    plot_path = os.path.join(plot_dir, '05')
 
 
-    # import the dataset 
-    iris = load_iris()
+# import the dataset 
+iris = load_iris()
 
-    # store features in different variables 
-    sepal_length = iris.data[:, 0]
-    sepal_width = iris.data[:, 1]   
-    petal_length = iris.data[:, 2]
-    petal_width = iris.data[:, 3]
+# store features in different variables 
+sepal_length = iris.data[:, 0]
+sepal_width = iris.data[:, 1]   
+petal_length = iris.data[:, 2]
+petal_width = iris.data[:, 3]
 
-    # Prepare class colors for both plots. In each plots, classes (iris species) will be represented by different colors. 
-    # Colors need to be arrays. Reference: https://jamesmccaffrey.wordpress.com/2020/10/22/making-a-python-scatter-plot-with-different-colors-for-different-labels/ 
-    # reference: https://matplotlib.org/stable/gallery/color/named_colors.html
-    colormap_sepal = np.array(['palegreen', 'limegreen', 'green'])
-    colormap_petal = np.array(['orchid', 'mediumvioletred', 'pink'])
+# Prepare class colors for both plots. In each plots, classes (iris species) will be represented by different colors. 
+# Colors need to be arrays. Reference: https://jamesmccaffrey.wordpress.com/2020/10/22/making-a-python-scatter-plot-with-different-colors-for-different-labels/ 
+# reference: https://matplotlib.org/stable/gallery/color/named_colors.html
+colormap_sepal = np.array(['palegreen', 'limegreen', 'green'])
+colormap_petal = np.array(['orchid', 'mediumvioletred', 'pink'])
+
+def scatter_sepal():
+
 
     # Plotting the data 
     # reference: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
@@ -75,8 +63,10 @@ def plot_scatter():
     # plt.show()
 
     # save the plot to a .png file in the 'scatter_plots' folder
-    plt.savefig(f'{plot_path}_sepal.png')
+    #plt.savefig(f'{plot_path}_sepal.png')
 
+
+def scatter_petal():
 
     # PETAL LENGTH vs PETAL WIDTH   
 
@@ -106,8 +96,10 @@ def plot_scatter():
     # plt.show()
 
     # save the plot to a .png file in the 'scatter_plots' folder
-    plt.savefig(f'{plot_path}_petal.png')
+    #plt.savefig(f'{plot_path}_petal')
 
 
 if __name__ == '__main__':
-    plot_scatter()
+    scatter_sepal()
+    scatter_petal()
+

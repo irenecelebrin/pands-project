@@ -20,21 +20,25 @@ Data to be included in the summary:
 Target: 
 - names 
 
-5) **histograms.py** investigate the dataset. generate histograms and save them -- create function and import module  
+5) **histograms.py** investigate the dataset. generate histograms and save them -- create function and import module   Distribution and variation DONE
 
-6) **scatter_plots.py** investigate the dataset. generate scatter plots and save them. 
+6) **feature boxplots** Distribution and feature variation DONE
 
-7) feature boxplots 
+6) **scatter_plots.py** investigate the dataset. generate scatter plots and save them. DONE 
 
-8) violin plots 
+7) **Line fitting** Fit a line 
 
-9) heatmap 
+8) 9) **Boxplots of petal width** 
 
-10) fitting a line 
+8) **heatmap** correlation between features, Pearson's correlation DONE 
 
-11) **analyse.py** plug all modules in the main file
 
-12) **raise errors and add logging** in analyse.py 
+
+10) **Pairplot**
+
+20) **analyse.py** plug all modules in the main file
+
+21) **raise errors and add logging** in analyse.py 
 
 Questions: 
 - does it make sense to creare an object for features and use throughout the project? 

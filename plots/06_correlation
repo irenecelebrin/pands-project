@@ -1,5 +1,0 @@
-,sepal length (cm),sepal width (cm),petal length (cm),petal width (cm)
-sepal length (cm),1.0,-0.12,0.87,0.82
-sepal width (cm),-0.12,1.0,-0.43,-0.37
-petal length (cm),0.87,-0.43,1.0,0.96
-petal width (cm),0.82,-0.37,0.96,1.0
