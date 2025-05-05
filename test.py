@@ -11,10 +11,8 @@ import pandas as pd
 import os 
 
 
-# create directory to save the plots 
-if not os.path.exists('scatterplots'):
-    os.makedirs('scatterplots')
 
-iris_data = pd.read_csv('./iris/iris.data')
 
-print(iris_data.describe()) 
+iris = load_iris()
+
+print(type(iris.DESCR))

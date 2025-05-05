@@ -5,9 +5,9 @@
 This repository includes the final project for the course 'Programming and Scripting' of the Higher Diploma in Computing for Data Analytics (year: 2025/2026). The project consists of a study of the Iris dataset by R. Fisher; the goal is to analyse and plot the data programmatically, in order to gain meaningful insights on the dataset. 
 
 The repository includes the following files and folders: 
-- **README** (i.e. this file). It includes information on each of the modules in the project, a comment on the project output, and references to external sosurces. 
-- **requirements.txt**. A list of the requirements to run the code, more information in *I. Requirements*
-- **.gitignore**. List of file formats that git will ignore and not include in the pushes
+- **README** (i.e. this file). It includes information on the dataset and on each of the modules in the project, a comment on the project output, and references to external sosurces. 
+- **requirements.txt**. A list of the requirements to run the code, more information in *I. Requirements*.
+- **.gitignore**. A list of file formats that git will ignore and not include in the pushes.
 - **iris**. The complete iris dataset, for user reference *. 
 - **modules**. More information in *III. The analysis*. 
     - read_dataset.py
@@ -19,17 +19,17 @@ The repository includes the following files and folders:
     - heatmap.py
 - **analyse.py**. Main file where the code can be run all at once. 
 
-*The complete iris dataset available on [UCI Machine Learning](https://archive.ics.uci.edu/dataset/53/iris) is included in the repository for user reference. However, in the code the dataset is always imported through the Scikit learn library [load_iris()](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html), which makes it easier to explore and manipulate the data. 
+*The complete Iris dataset available on [UCI Machine Learning](https://archive.ics.uci.edu/dataset/53/iris) is included in the repository for user reference. However, in the code the dataset is always imported through the Scikit learn library [load_iris()](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html), which makes it easier to explore and manipulate the data. 
 
 ## I. Requirements 
 
-Requirements to run the code: The code can be interpreted with python 3.12.
+Requirements to run the code: The code can be interpreted with Python 3.12.
 
 A number of external libraries are used in this project: a complete list is provided in the file [*requirements.txt*](.\requirements.txt). 
 
 If the code is executed locally, make sure these libraries are installed on your machine. If you are running the code in a virtual environment, that won't be necessary. You can install the libraries in two ways: 
-1) individually, running the command 'pip install *library name*'
-2) all together, running the command 'pip pip install -r requirements.txt'
+-  individually, running the command 'pip install *library name*'
+- all together, running the command 'pip pip install -r requirements.txt'
 
 
 
@@ -54,11 +54,15 @@ The Iris dataset is commonly used as a beginner's dataset to approach machine le
 As explained in *About this repository*, the full dataset is included in this repository for reference purposes. However, in the program the dataset is also imported from the module Sklearn.datasets to make it easier to load and explore the data. 
 
 ### 0. Analyse
+
+Module: analyse.py 
+
 **How it works** 
 
-This is the main program, and it allows to perform several functions. 
-Each component of the program was developed individually and is imported in the main python file as external custom module.
-All modules are independent, so if a module is not required, it can be commented and the program run without it. 
+This is the main program, and it allows to carry out an analysis of the dataset and print the outputs to a folder named '**plots**'. 
+
+Each component of the program was developed individually and is imported in the main Python file as an external custom module.
+All modules are independent, so if a module is not required in the analysis, it can be commented and the program run without it. 
 
 The modules included in the main program are: 
 1) read_dataset.py
@@ -77,14 +81,39 @@ Module: read_dataset.py
 **What it does**
 
 Read_dataset.py will print in the console a brief description of the dataset. It can be used by the user to verify the properties of the dataset. The information includes: 
-- Shape of the dataset (n. of instances, n. of columns)
+- Shape of the dataset (n. of instances, n. of variables)
 - Names of the features
 - Names of the target classes 
-- Preview of the first rows of the dataset
+- Preview of the first 5 rows of the dataset
 - Keys of the datset. 
 Additionally, this script allows the user to input a key of the dataset, and view corresponding value. 
 
+**How it works**
+
+The iris dataset is imported through the Scikit Learn module [load_iris()](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html). 
+
+The function load_iris() returns a bunch, that is a dictionary-like object that includes several keys: 
+- data
+- target
+- frame
+- target_names
+- DESCR
+- feature_names
+- filename
+- data_module
+
+It is relevant to point out that the data of the dataset (data, targets, feature names, target names) are all Numpy arrays, so it is easy to manipulate them with numpy to extract and plot the data. 
+The key DESCR is a string, and provides useful metadata on the dataset, including information on author, literature, variables and statistics on the data (the same metadata that you can find in iris/iris.names).
+The keys are leveraged to print in the console a introdution to the dataset, and ask the user for further input to continue exploring the data. 
+
+Finally, Pandas is also used to convert the dataset to a dataframe and show a preview of the dataset in tabular format (source: [how to convert sklearn to pandas dataframe](https://www.geeksforgeeks.org/How-to-convert-sklearn-dataset-to-pandas-dataframe-in-python/)).
+
 **Looking at the output**
+
+The output of the program shows that the dataset consists of 150 samples. For each sample, 5 variables are provided (4 features, 1 target). 
+The output shows the names of the features, specifying that they are expressed in cm, and the names of the targets. 
+
+It is worth to mention that in the preview of the data in tabular format the targets are not referred to with the Iris species name (which would be strings), but with numbers (integers), probably to make it easier to manipulate the data. 
 
 
 ### 2. The summary 
@@ -93,29 +122,53 @@ Module: summary.py
 
 **What it does**
 
-Summary.py creates a text file with a summary of the variables included in the dataset: 
-For independent variables (features):
-- name
-- sample number in the dataset
-- count of unique values 
-- mathematical calculations: max, min, avg, mean, std, 1st quartile (25%), 3rd quartile(75%)
+Summary.py creates a text file (summary.txt) with a summary of the variables included in the dataset. 
 
-For dependent variable (target, or class)
-- sample number in the dataset
+For independent variables (features), the following information is provided:
+- name
+- number of samples in the dataset
+- count of unique values 
+- statistics: min, max, mean, std, median, 1st quartile, 3rd quartile 
+
+For dependent variable (target, or class), the information provided is: 
+- number of samples in the dataset
 - unique values number
 - names
 - unique values 
 
-**Looking at the numbers**
+**How it works** 
+The program consists of two functions, one for each variable type (features, targets). 
+With regard to features (independent variables), to make the code more synthetic, I decided to create smaller functions to perform different operations. I carried out this operations for each feature in a for loop, and printed the results to a text file. 
+As for the target (dependent variable), this was not necessary, so the operations are carried out on the variables and saved to a text file. 
 
-[TO REPHRASE]
-Features (independent variables): 
-- petal width has the smallest dimensions 
-- 
+The dataset was again imported with load_iris(). Numpy is used to perform all the operations: 
+[np.size](https://numpy.org/doc/stable/reference/generated/numpy.size.html)
+[np.unique](https://numpy.org/doc/stable/reference/generated/numpy.unique.html)
+[np.min](https://numpy.org/doc/stable/reference/generated/numpy.min.html)
+[np.max](https://numpy.org/doc/stable/reference/generated/numpy.max.html)
+[np.mean](https://numpy.org/doc/stable/reference/generated/numpy.mean.html)
+[np.std](https://numpy.org/doc/stable/reference/generated/numpy.std.html)
+[np.median](https://numpy.org/doc/stable/reference/generated/numpy.median.html)
+[np.quantile](https://numpy.org/doc/stable/reference/generated/numpy.quantile.html)
+
+
+
+**Looking at the numbers**
+The file summary.txt provides the following useful information: 
+- it verifies that each feature has 150 values, which means that all samples have 4 feature values -- none is Null. 
+- it shows how many unique values each feature has: Petal length is the feature with the highest number of unique values (43).
+It allows to gain insight from the following stathistical operations: 
+- minimum: the lowest value in the range. Based on the data, Petal width stands out as the feature with the lowest minimum, while Sepal length is the feature with the greatest minimum. 
+- maximum: the greatest value in the range. Again, Petal width has the lowest maximum, while Sepal length has the greatest maximum.
+- mean: the sum of a collection of numbers divided by the count of numbers in the collection [Wikipedia](https://en.wikipedia.org/wiki/Arithmetic_mean). 
+- median: the 'middle' value, i.e. the value that separates the higher half from the lower half in a range [Wikipedia](https://en.wikipedia.org/wiki/Median). Comparing mean and median, it is possible to observe that they tend to be somehow similar for all features, with the greatest difference occurring for Petal Length, where the mean is 3.75 and the median 4.35. 
+- standard deviation: the amount of variation of a variable from the mean value in the range [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation). Petal length has the greatest standard deviation, with a value (1.75) that is more than double that of the second highest standard deviation (Sepal length, 0.82). Sepal width has the lowest standard deviation. This means that Petal length dimensions vary a lot across samples, while Sepal width is somehow similar in all samples. 
+- 1st quartile (25%): cut point that divided a range of data in four equal parts. The 1st quantile corresponds to 25th percentile. [Wikipedia](https://en.wikipedia.org/wiki/Quartile).
+- 3rd quartile (75%): the third quartile corresponds to 75th percentile. [Wikipedia](https://en.wikipedia.org/wiki/Quartile). Quartiles will be useful to plot and understand boxplots. 
 
 **About summary.txt**
 
-Instead of writing the data to a text file, I would have tried to calculate the data and add them to a dictionnary, that I could have later converted to a Pandas dataframe and printed to a .csv file. This is because having individial blocks of information for each feature (as in summary.txt) makes it harder to compare numbers and gain insights on differences/similarities between features. 
+Or The limitations of this program. In hindsight, instead of writing and saving the data to a text file, I would have tried to save the data in a tabular format, probably using dictionnaries and Pandas. This is because having individial blocks of information for each feature (as in summary.txt) makes it harder to compare numbers and gain insights on differences/similarities between features. 
 
 ### 3. Histograms 
 
