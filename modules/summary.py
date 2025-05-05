@@ -80,4 +80,4 @@ def summary(summary_path):
     dependent_variables_summary(summary_path)
 
 if __name__ == '__main__':  
-    summary()
+    summary('summary.txt')
