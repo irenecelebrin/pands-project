@@ -136,7 +136,8 @@ For dependent variable (target, or class), the information provided is:
 - names
 - unique values 
 
-**How it works** 
+**How it works**
+
 The program consists of two functions, one for each variable type (features, targets). 
 With regard to features (independent variables), to make the code more synthetic, I decided to create smaller functions to perform different operations. I carried out this operations for each feature in a for loop, and printed the results to a text file. 
 As for the target (dependent variable), this was not necessary, so the operations are carried out on the variables and saved to a text file. 
@@ -154,21 +155,23 @@ The dataset was again imported with load_iris(). Numpy is used to perform all th
 
 
 **Looking at the numbers**
+
 The file summary.txt provides the following useful information: 
 - it verifies that each feature has 150 values, which means that all samples have 4 feature values -- none is Null. 
 - it shows how many unique values each feature has: Petal length is the feature with the highest number of unique values (43).
+
 It allows to gain insight from the following stathistical operations: 
-- minimum: the lowest value in the range. Based on the data, Petal width stands out as the feature with the lowest minimum, while Sepal length is the feature with the greatest minimum. 
-- maximum: the greatest value in the range. Again, Petal width has the lowest maximum, while Sepal length has the greatest maximum.
-- mean: the sum of a collection of numbers divided by the count of numbers in the collection [Wikipedia](https://en.wikipedia.org/wiki/Arithmetic_mean). 
-- median: the 'middle' value, i.e. the value that separates the higher half from the lower half in a range [Wikipedia](https://en.wikipedia.org/wiki/Median). Comparing mean and median, it is possible to observe that they tend to be somehow similar for all features, with the greatest difference occurring for Petal Length, where the mean is 3.75 and the median 4.35. 
-- standard deviation: the amount of variation of a variable from the mean value in the range [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation). Petal length has the greatest standard deviation, with a value (1.75) that is more than double that of the second highest standard deviation (Sepal length, 0.82). Sepal width has the lowest standard deviation. This means that Petal length dimensions vary a lot across samples, while Sepal width is somehow similar in all samples. 
-- 1st quartile (25%): cut point that divided a range of data in four equal parts. The 1st quantile corresponds to 25th percentile. [Wikipedia](https://en.wikipedia.org/wiki/Quartile).
-- 3rd quartile (75%): the third quartile corresponds to 75th percentile. [Wikipedia](https://en.wikipedia.org/wiki/Quartile). Quartiles will be useful to plot and understand boxplots. 
+- **minimum**: the lowest value in the range. Based on the data, Petal width stands out as the feature with the lowest minimum, while Sepal length is the feature with the greatest minimum. 
+- **maximum**: the greatest value in the range. Again, Petal width has the lowest maximum, while Sepal length has the greatest maximum.
+- **mean**: the sum of a collection of numbers divided by the count of numbers in the collection [Wikipedia](https://en.wikipedia.org/wiki/Arithmetic_mean). 
+- **median**: the 'middle' value, i.e. the value that separates the higher half from the lower half in a range [Wikipedia](https://en.wikipedia.org/wiki/Median). Comparing mean and median, it is possible to observe that they tend to be somehow similar for all features, with the greatest difference occurring for Petal Length, where the mean is 3.75 and the median 4.35. 
+- **standard deviation**: the amount of variation of a variable from the mean value in the range [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation). Petal length has the greatest standard deviation, with a value (1.75) that is more than double that of the second highest standard deviation (Sepal length, 0.82). Sepal width has the lowest standard deviation. This means that Petal length dimensions vary a lot across samples, while Sepal width is somehow similar in all samples. 
+- **1st quartile** (25%): cut point that divided a range of data in four equal parts. The 1st quantile corresponds to 25th percentile. [Wikipedia](https://en.wikipedia.org/wiki/Quartile).
+- **3rd quartile** (75%): the third quartile corresponds to 75th percentile. [Wikipedia](https://en.wikipedia.org/wiki/Quartile). Quartiles will be useful to plot and understand boxplots. 
 
-**About summary.txt**
+**EXTRA: limitations**
 
-Or The limitations of this program. In hindsight, instead of writing and saving the data to a text file, I would have tried to save the data in a tabular format, probably using dictionnaries and Pandas. This is because having individial blocks of information for each feature (as in summary.txt) makes it harder to compare numbers and gain insights on differences/similarities between features. 
+In hindsight, instead of writing and saving the data to a text file, I would have converted the dataset to a Pandas dataframe and used the function *df.describe()* to get the statistical data (min, max...). Then I could have added any other relevant information to that dataframe. This is because having individial blocks of information for each feature (as in summary.txt) makes it harder to compare numbers and gain insights on differences/similarities between features. About df.dataframe(): [Exploratory data analysis on Iris dataset](https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/). 
 
 ### 3. Histograms 
 
@@ -176,13 +179,19 @@ Module: histograms.py
 
 **What it does**
 
-Histograms.py loads the iris dataset, creates histograms for each feature and saves them to .pgn files. 
+Histograms.py loads the iris dataset, creates histograms for each feature and saves them to .png files. 
 Reference: [matplotlib.pyplot.hist](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html)
 
+**How it works** 
+
+After loading the dataset, the features are extracted slicing the numpy array *data*. Then, lists are created to set the colors for each plot. Finally, histograms are plotted iterating Matplotlib functions for each feature (creating the plot, adding labels and title, and saving the plot). 
+
+A **stateful approach** is used on Matplotlib, using pyplot to store the information related to each plot (source: [Matplotlib essentials](https://medium.com/@The_Gambitier/matplotlib-essentials-e376ed954201)). 
+
 **About the histograms** 
-[Petal Length and Width have similar trends]
-[Sepal length: most samples are in the first 2/3 or the range, without a regular distribution]
-[Sepal width: most samples are in the center of the range, showing that few samples are much smaller or bigger than that ]
+The histograms highlight the distribution of each feature with regard to dimensions ([Exploratory Data Analysis on Iris Dataset](https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/)). What is worth pointing out is: 
+- **Petal length and Petal width** have a similar frequency distribution: many samples have smaller dimensions (Petal length: 1-2cm, width: 0.1-0.5cm), then there is few samples in the range immediately after, and then frequency increases again (Petal length: 4+cm, width: 1.4cm). This can be the sign of a positive correlation between the features.
+- **Sepal length and Sepal width** do not seem to have a similar frequency distribution, if not that they tend to have higher frequency (more samples) in the centre of the range, and fewer at the lower and higher end.  However, Sepal length has higher frequency in the first 2/3 of the  (5-6.5cm), while Sepal width has lowe frequency at both ends, and high frequency in the center of the range (3-3.5cm). 
 
 ### 4. Boxplots 
 
@@ -190,13 +199,20 @@ Module: boxplots.py
 
 **What it does**
 
-**About the plot**
-Boxplots are used to verify feature variation and distribution. 
+Boxplots.py loads the iris dataset and plots four boxplots representing the distribution of samples for each feature. About boxplots: [Matplotlib.axes.Axes.boxplot](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html)
 
-[Sepal width has the least degree of variation, but also some outliers]
-[Sepal length has a long whisker in the upper part, showing few sparse samples much bigger than the others]
-[Petal length has the highest degree of variation, median is close to 3rd quartile + long whisker in the upper part]
-[Petal width has a similar trend to Petal length: median is close to 3rd quartile, long whisker in the upper part BUT lower variation in dimensions]
+**How it works**
+To allow more personalization of the plot with regard to colors, a **stateless** (or object-oriented) approach to Matplotlib is used. 
+The same colors used in the histograms are used, to make it easier to associate the plots and compare the data. 
+
+
+**About the plot**
+Boxplots are used to complement the analysis on the distribution of samples with regard to each features. What stands out from the plot is: 
+
+- **Sepal length**: The lower whisker and the plot (corresponding to 1st, 2nd and 3rd quartiles) seem to have similar dimensions, which means that the frequency of samples in those ranges is similar. On the other hand, the higher whisker is longer, showing that samples in the 4th quartile are more sparse and less frequent. 
+- **Sepal width**: it is the feature with the lowest variation, with samples concentrated in a narrow interval. In particular, the box (i.e. the range between the 1st and the 3rd quartile) is particularly narrow, showing a high frequency of values in that range. At the ends, particulary at the higher end, there are some fliers (outliers). This is coherent with what has been observed in the histogram. 
+- **Petal length** has the highest distribution, which means that sample dimensions vary more. It is also worth pointing out that the box is plartilarly wide, showing low distribution between the 1st and 3rd quartile. 
+- **Petal width** it shows a similar trend to Petal length, but with lower variation: short lower whisker, wide box, median line close to the higher end of the box, longer upper whisker. This is also coherent with the observations made about histograms. 
 
 
 ### 5. Scatterplots 
@@ -205,26 +221,25 @@ Module: scatterplots.py
 
 **What it does**
 
-This module loads the iris dataset and creates scatter plots for each pair of features: sepal length vs sepal width, petal length vs petal width. The script includes functions to plot each plot, and one function to save both plots to .png files. 
-Reference: 
-scatter plots https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
-scatter plot with legend: https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_with_legend.html
-grid: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html
-ticks: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticks.html
+This module loads the iris dataset and creates scatter plots for each pair of features: sepal length vs sepal width, petal length vs petal width. The script includes functions to plot each plot, and one function to save both plots to .png files. About scatter plots: [matplotlib.axes.scatter](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html). More information on sources is provided in the code. 
+
+**What it does** 
+
+The datased is loaded, the data array sliced to extract arrays for each feature. Arrays are created to set colors for both scatter plots. The module Line2D is used to dinamically assign different colors to each class and create a legend with the class names. 
+
 
 **About the scatter plots**
 
 Scatter plots are used to highlight correlations between features, and verify if classes also play a role in the correlation. 
 
-**Sepal:** 
-Iris Setosa has smaller Sepal length but greater width, while Versicolor and Virgina have greater length and lower width. 
-This trend makes it easy to distinguish Setosa species from the others; on the other hand, Versicolor and Iris Virginica look quite similar and can't be easily distinguished one from the other. The only difference is that Versicolor samples tend to have smaller dimensions (They are mostly located in the lower part of the plot, on the left), while Virginica samples seem to be bigger in dimension (lower part of the plot, but on the right). 
+- **Sepal:** Iris Setosa has smaller Sepal length but greater width, while Versicolor and Virgina have greater length and lower width. [Exploratory data analysis: iris dataset](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html). 
+This trend makes it easy to distinguish Setosa species from the others. On the other hand, Iris Versicolor and Iris Virginica look quite similar and can't be easily distinguished one from the other. The only difference is that Versicolor samples tend to have smaller dimensions (They are mostly located in the lower part of the plot, on the left), while Virginica samples seem to have longer Sepal length (samples are more frequent in the lower part of the plot, but on the right). 
 
-Based exclusively on Petal length and Petal width, it would not be possible to predict which species a sample belongs to. However, it could be possible to predict if a species is a Setosa or not. 
+Based exclusively on Sepal length and Sepal width, it would not be possible to predict which species a sample belongs to. However, it could be possible to predict if a species is a Setosa or not. 
 
-**Petal:** 
-As for Petal length and Petal width, the plot highlights a direct positive correlation between the two features. It looks like each class has its own characteristic dimensions -- Iris Setosa has smaller dimensions, Versicolor tend to be bigger, and Virginica even more. 
-Again, Iris Setosa can be more easily separated from the other two classes, whereas Versicolor and Virginica samples overlap in a small area of the plot.
+- **Petal:** As for Petal length and Petal width, the plot confirms the correlation guessed looking at the histograms. 
+In particular, the plot highlights a direct positive correlation between the two features: the longer the petal, the wider it is. It looks like each class has its own characteristic dimensions: Iris Setosa have smaller dimensions, Versicolor tend to be bigger, and Virginica even more. 
+Again, Iris Setosa can be more easily separated from the other two classes, whereas Versicolor and Virginica samples overlap in a small area of the plot. However, it could be possible to predict which species a sample belongs to. 
 
 ### 6. Linear Regression 
 
