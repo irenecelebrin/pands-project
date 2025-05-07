@@ -76,6 +76,8 @@ def petal_regression():
     slope_petal = petal_res.slope
     intercept_petal = petal_res.intercept
 
+    print 
+
     # Get line equation: y = mx + c, where m is the slope and c is the intercept.
     petal_equation = f'W = {slope_petal:.2f}L + {intercept_petal:.2f}'
 

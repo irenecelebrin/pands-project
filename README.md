@@ -221,25 +221,30 @@ Module: scatterplots.py
 
 **What it does**
 
-This module loads the iris dataset and creates scatter plots for each pair of features: sepal length vs sepal width, petal length vs petal width. The script includes functions to plot each plot, and one function to save both plots to .png files. About scatter plots: [matplotlib.axes.scatter](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html). More information on sources is provided in the code. 
+This module loads the iris dataset and creates scatter plots for each pair of features: sepal length vs sepal width, petal length vs petal width. About scatter plots: [matplotlib.axes.scatter](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html). More information on sources is provided in the code. 
 
-**What it does** 
+**How it works** 
 
-The datased is loaded, the data array sliced to extract arrays for each feature. Arrays are created to set colors for both scatter plots. The module Line2D is used to dinamically assign different colors to each class and create a legend with the class names. 
+The script includes functions to plot each scatter plot, and one function to save both plots to .png files. 
+In the first functions, the datased is loaded, the data array sliced to extract arrays for each feature. Arrays are created to set colors for both scatter plots. The module Line2D is used to dinamically assign different colors to each class and create a legend with the class names. 
 
 
 **About the scatter plots**
 
-Scatter plots are used to highlight correlations between features, and verify if classes also play a role in the correlation. 
+Scatter plots are used to investigate if there is a relationship between two given variables, and verify if one variable can be used to predict the other (source: [What is a scatter plot](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html)). In this case, they can also highlight if class distribution is meaningful, i.e. if based on the two variables it is possible to predict the class of a given sample. 
 
-- **Sepal:** Iris Setosa has smaller Sepal length but greater width, while Versicolor and Virgina have greater length and lower width. [Exploratory data analysis: iris dataset](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html). 
+**Sepal:** 
+
+The Sepal scatter plot shows that Iris Setosa has smaller Sepal length but greater width, while Versicolor and Virgina have greater length and lower width. [Exploratory data analysis: iris dataset](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html). 
 This trend makes it easy to distinguish Setosa species from the others. On the other hand, Iris Versicolor and Iris Virginica look quite similar and can't be easily distinguished one from the other. The only difference is that Versicolor samples tend to have smaller dimensions (They are mostly located in the lower part of the plot, on the left), while Virginica samples seem to have longer Sepal length (samples are more frequent in the lower part of the plot, but on the right). 
 
 Based exclusively on Sepal length and Sepal width, it would not be possible to predict which species a sample belongs to. However, it could be possible to predict if a species is a Setosa or not. 
 
-- **Petal:** As for Petal length and Petal width, the plot confirms the correlation guessed looking at the histograms. 
-In particular, the plot highlights a direct positive correlation between the two features: the longer the petal, the wider it is. It looks like each class has its own characteristic dimensions: Iris Setosa have smaller dimensions, Versicolor tend to be bigger, and Virginica even more. 
-Again, Iris Setosa can be more easily separated from the other two classes, whereas Versicolor and Virginica samples overlap in a small area of the plot. However, it could be possible to predict which species a sample belongs to. 
+**Petal:** 
+As for Petal length and Petal width, the plot confirms the correlation guessed looking at the histograms. 
+In particular, the plot highlights a direct positive correlation between the two features: the longer the petal, the wider it is. It looks like each class has its own characteristic dimensions: Iris Setosa have smaller dimensions, Versicolor species tend to be bigger, and Virginica even more. 
+
+Again, Iris Setosa can be more easily separated from the other two classes, whereas Versicolor and Virginica samples overlap in a small area of the plot. However, based on Petal dimensions it could be possible to predict which species a sample belongs to. 
 
 ### 6. Linear Regression 
 
@@ -247,11 +252,20 @@ Module: linear_regression.py
 
 **What it does**
 
-Linear_regression.py uses SciPy to calculate Simple linear regression for each pair of features from the scatter plots (Sepal length vs Sepal width, Petal length vs petal width).
-It uses the values of slope and intercept to create an equation that represents a trend in the data. It re-creates the scatter plots from 5. Scatter, and plots a line to represent the Regression formula. 
+Linear_regression.py uses SciPy to calculate Simple linear regression for each pair of features from the scatter plots (Sepal length vs Sepal width, Petal length vs petal width) and plot a line that represents the trend in the data. 
+Specifically, it uses the values of slope and intercept to create an equation that represents a trend in the data. It re-creates the scatter plots from 5. Scatter, and plots a line to represent the Regression equation. Source: [scipy.stats.linregress](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html).
+
+**How it works** 
+Two functions are created in the program: each function calculates the values of slope and intercept related to the ideal line highlighting a trend in the data. The slope (or grandient) indicates how steep the line is, while the intercept is the value of y when x=0 ([Data Science - Slope and Intercept](https://www.w3schools.com/datascience/ds_linear_slope.asp)). Once these values are found, it is possible to derive the equation of Simple linear regression, and plot the line. Based on this equation, and if this equation is accurate, it would be possible to roughly derive the value of a variable, based on the value of the other variable. 
+
+After the Simple linear regression formula is found, the scatter plot is recreated and the line plotted above that. 
+
+A function at the end of the program executes both functions and saves the plots to image files. 
 
 **About the regression lines**
-Explain what linear regression is 
+Calculating simple linear regression and plotting the line on the scatter plots highlights the following points: 
+
+**Sepal** It does not look like the line fits the data accurately: most samples are quite far from the line. In this case, Simple Linear Regression is used to highlight (or not) a trend in the data, and not to predict values. If the goal was to predict values, however, it would be possible to verify the accuracy of the equation calculating the root mean squared error ([Linear Regression (Accuracy)](https://www.kaggle.com/discussions/questions-and-answers/62086)) or using the coefficient of determination $R^2$ ([Coefficient of Determination (R²) | Calculation & Interpretation](https://www.kaggle.com/discussions/questions-and-answers/62086)). 
 
 Explain what it highlights 
 - no trend in Sepal
