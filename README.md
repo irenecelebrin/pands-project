@@ -367,6 +367,22 @@ The pairplot seems to confirm many of the trends observed in the analysis:
 
 - **Petal size.** As already pointed out in the analysis, between Petal length and Petal width there is such a correlation that, based on these variables, it would be possible to predict which species a sample belongs to.
 
+## VI. Wins and challenge of this project
+
+I decided to create the analysis of the datset as a Python program so that I could practise more what I had been learning during the course. When I started, my (probably too ambitious) plan was to create a small but mighty architecture to showcase my skills. I planned to have different custom modules to analyze and plot data. The reasons behind my choice: 
+- improve the readability of my code -- having smaller modules instead of one long script. 
+- make is easier to find errors and fix them, when running the code
+- have a more complex but also agile code.
+
+I still believe that developing smaller modules has helped me achive the first two points, so that counts as a win. 
+
+However, the more I was working on the project, the more I realized that my code was not complex enough, and not agile at all. It is quite repetitive instead. I am sure that my code could be much more efficient, had I spent more time experimenting with the architecture (or just using Jupyter Notebook and one long file). I think this is a limitation of my project, but also a challenge for the projects that will come. 
+
+Thank you, 
+
+Irene Celebrin 
+
+
 
 
 ## IV. References 
