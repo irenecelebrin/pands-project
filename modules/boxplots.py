@@ -2,11 +2,9 @@
 # This script allows to create boxplots showing the distribution of the features in the iris dataset. In particular, it shows maximum, minimum, median, first and thrid quartiles, and highlights any outliers. 
 # Official documentation on Matplotlib: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html 
 
-# import required modules: sklearn.datasets, matplotlib.pyplot, numpy, os 
+# import required modules: sklearn.datasets, matplotlib.pyplot
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
-import numpy as np 
 
 def plot_boxplots():    
 

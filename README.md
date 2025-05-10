@@ -143,14 +143,14 @@ With regard to features (independent variables), to make the code more synthetic
 As for the target (dependent variable), this was not necessary, so the operations are carried out on the variables and saved to a text file. 
 
 The dataset was again imported with load_iris(). Numpy is used to perform all the operations: 
-[np.size](https://numpy.org/doc/stable/reference/generated/numpy.size.html)
-[np.unique](https://numpy.org/doc/stable/reference/generated/numpy.unique.html)
-[np.min](https://numpy.org/doc/stable/reference/generated/numpy.min.html)
-[np.max](https://numpy.org/doc/stable/reference/generated/numpy.max.html)
-[np.mean](https://numpy.org/doc/stable/reference/generated/numpy.mean.html)
-[np.std](https://numpy.org/doc/stable/reference/generated/numpy.std.html)
-[np.median](https://numpy.org/doc/stable/reference/generated/numpy.median.html)
-[np.quantile](https://numpy.org/doc/stable/reference/generated/numpy.quantile.html)
+[np.size](https://numpy.org/doc/stable/reference/generated/numpy.size.html),
+[np.unique](https://numpy.org/doc/stable/reference/generated/numpy.unique.html),
+[np.min](https://numpy.org/doc/stable/reference/generated/numpy.min.html),
+[np.max](https://numpy.org/doc/stable/reference/generated/numpy.max.html),
+[np.mean](https://numpy.org/doc/stable/reference/generated/numpy.mean.html),
+[np.std](https://numpy.org/doc/stable/reference/generated/numpy.std.html),
+[np.median](https://numpy.org/doc/stable/reference/generated/numpy.median.html),
+[np.quantile](https://numpy.org/doc/stable/reference/generated/numpy.quantile.html).
 
 
 
@@ -169,18 +169,23 @@ It allows to gain insight from the following stathistical operations:
 - **1st quartile** (25%): cut point that divided a range of data in four equal parts. The 1st quantile corresponds to 25th percentile. [Wikipedia](https://en.wikipedia.org/wiki/Quartile).
 - **3rd quartile** (75%): the third quartile corresponds to 75th percentile. [Wikipedia](https://en.wikipedia.org/wiki/Quartile). Quartiles will be useful to plot and understand boxplots. 
 
+
 **EXTRA: limitations**
 
 In hindsight, instead of writing and saving the data to a text file, I would have converted the dataset to a Pandas dataframe and used the function *df.describe()* to get the statistical data (min, max...). Then I could have added any other relevant information to that dataframe. This is because having individial blocks of information for each feature (as in summary.txt) makes it harder to compare numbers and gain insights on differences/similarities between features. About df.dataframe(): [Exploratory data analysis on Iris dataset](https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/). 
+
+
 
 ### 3. Histograms 
 
 Module: histograms.py
 
+
 **What it does**
 
 Histograms.py loads the iris dataset, creates histograms for each feature and saves them to .png files. 
 Reference: [matplotlib.pyplot.hist](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html)
+
 
 **How it works** 
 
@@ -188,28 +193,38 @@ After loading the dataset, the features are extracted slicing the numpy array *d
 
 A **stateful approach** is used on Matplotlib, using pyplot to store the information related to each plot (source: [Matplotlib essentials](https://medium.com/@The_Gambitier/matplotlib-essentials-e376ed954201)). 
 
+
 **About the histograms** 
+
 The histograms highlight the distribution of each feature with regard to dimensions ([Exploratory Data Analysis on Iris Dataset](https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/)). What is worth pointing out is: 
 - **Petal length and Petal width** have a similar frequency distribution: many samples have smaller dimensions (Petal length: 1-2cm, width: 0.1-0.5cm), then there is few samples in the range immediately after, and then frequency increases again (Petal length: 4+cm, width: 1.4cm). This can be the sign of a positive correlation between the features.
 - **Sepal length and Sepal width** do not seem to have a similar frequency distribution, if not that they tend to have higher frequency (more samples) in the centre of the range, and fewer at the lower and higher end.  However, Sepal length has higher frequency in the first 2/3 of the  (5-6.5cm), while Sepal width has lowe frequency at both ends, and high frequency in the center of the range (3-3.5cm). 
+
 
 ### 4. Boxplots 
 
 Module: boxplots.py
 
+
 **What it does**
 
-Boxplots.py loads the iris dataset and plots four boxplots representing the distribution of samples for each feature. About boxplots: [Matplotlib.axes.Axes.boxplot](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html)
+Boxplots.py loads the iris dataset and plots four boxplots representing the distribution of samples for each feature. About boxplots: [Matplotlib.axes.Axes.boxplot](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html).
+
 
 **How it works**
+
+A function is created to plot boxplots for each feature in the dataset.
 To allow more personalization of the plot with regard to colors, a **stateless** (or object-oriented) approach to Matplotlib is used. 
 The same colors used in the histograms are used, to make it easier to associate the plots and compare the data. 
 
+Finally, another function is created to save the plot to an image file. 
+
 
 **About the plot**
-Boxplots are used to complement the analysis on the distribution of samples with regard to each features. What stands out from the plot is: 
 
-- **Sepal length**: The lower whisker and the plot (corresponding to 1st, 2nd and 3rd quartiles) seem to have similar dimensions, which means that the frequency of samples in those ranges is similar. On the other hand, the higher whisker is longer, showing that samples in the 4th quartile are more sparse and less frequent. 
+Boxplots are used to complement the distribution analysis performed with histograms. The boxplots highlight the following trends in the features: 
+
+- **Sepal length**: The lower whisker and the plot (corresponding to 1st, 2nd and 3rd quartiles) seem to have similar dimensions, which means that the frequency of samples in those ranges is similar. On the other hand, the higher whisker is longer, showing that samples after the 3rd quartile (=75% of the samples) are more sparse and less frequent. 
 - **Sepal width**: it is the feature with the lowest variation, with samples concentrated in a narrow interval. In particular, the box (i.e. the range between the 1st and the 3rd quartile) is particularly narrow, showing a high frequency of values in that range. At the ends, particulary at the higher end, there are some fliers (outliers). This is coherent with what has been observed in the histogram. 
 - **Petal length** has the highest distribution, which means that sample dimensions vary more. It is also worth pointing out that the box is plartilarly wide, showing low distribution between the 1st and 3rd quartile. 
 - **Petal width** it shows a similar trend to Petal length, but with lower variation: short lower whisker, wide box, median line close to the higher end of the box, longer upper whisker. This is also coherent with the observations made about histograms. 
@@ -219,9 +234,11 @@ Boxplots are used to complement the analysis on the distribution of samples with
 
 Module: scatterplots.py
 
+
 **What it does**
 
 This module loads the iris dataset and creates scatter plots for each pair of features: sepal length vs sepal width, petal length vs petal width. About scatter plots: [matplotlib.axes.scatter](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html). More information on sources is provided in the code. 
+
 
 **How it works** 
 
@@ -233,45 +250,64 @@ In the first functions, the datased is loaded, the data array sliced to extract 
 
 Scatter plots are used to investigate if there is a relationship between two given variables, and verify if one variable can be used to predict the other (source: [What is a scatter plot](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html)). In this case, they can also highlight if class distribution is meaningful, i.e. if based on the two variables it is possible to predict the class of a given sample. 
 
-**Sepal:** 
-
+**Sepal.**
 The Sepal scatter plot shows that Iris Setosa has smaller Sepal length but greater width, while Versicolor and Virgina have greater length and lower width. [Exploratory data analysis: iris dataset](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html). 
 This trend makes it easy to distinguish Setosa species from the others. On the other hand, Iris Versicolor and Iris Virginica look quite similar and can't be easily distinguished one from the other. The only difference is that Versicolor samples tend to have smaller dimensions (They are mostly located in the lower part of the plot, on the left), while Virginica samples seem to have longer Sepal length (samples are more frequent in the lower part of the plot, but on the right). 
 
 Based exclusively on Sepal length and Sepal width, it would not be possible to predict which species a sample belongs to. However, it could be possible to predict if a species is a Setosa or not. 
 
-**Petal:** 
-As for Petal length and Petal width, the plot confirms the correlation guessed looking at the histograms. 
+**Petal.** As for Petal length and Petal width, the plot confirms the correlation guessed looking at the histograms. 
 In particular, the plot highlights a direct positive correlation between the two features: the longer the petal, the wider it is. It looks like each class has its own characteristic dimensions: Iris Setosa have smaller dimensions, Versicolor species tend to be bigger, and Virginica even more. 
 
 Again, Iris Setosa can be more easily separated from the other two classes, whereas Versicolor and Virginica samples overlap in a small area of the plot. However, based on Petal dimensions it could be possible to predict which species a sample belongs to. 
+
 
 ### 6. Linear Regression 
 
 Module: linear_regression.py
 
+
 **What it does**
 
-Linear_regression.py uses SciPy to calculate Simple linear regression for each pair of features from the scatter plots (Sepal length vs Sepal width, Petal length vs petal width) and plot a line that represents the trend in the data. 
-Specifically, it uses the values of slope and intercept to create an equation that represents a trend in the data. It re-creates the scatter plots from 5. Scatter, and plots a line to represent the Regression equation. Source: [scipy.stats.linregress](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html).
+Linear_regression.py uses SciPy to calculate Simple linear regression for each pair of features from the scatter plots (Sepal length vs Sepal width, Petal length vs petal width) and plot a line that represents the trend in the data, over the existing scatter plots. 
+
+Specifically, for both pair of features, the program calculates the values of slope and intercept to create an equation that represents a trend in the data. It prints this equation in the plots, together with the coefficients of determination $R^2$. Source: [scipy.stats.linregress](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html).
+
 
 **How it works** 
-Two functions are created in the program: each function calculates the values of slope and intercept related to the ideal line highlighting a trend in the data. The slope (or grandient) indicates how steep the line is, while the intercept is the value of y when x=0 ([Data Science - Slope and Intercept](https://www.w3schools.com/datascience/ds_linear_slope.asp)). Once these values are found, it is possible to derive the equation of Simple linear regression, and plot the line. Based on this equation, and if this equation is accurate, it would be possible to roughly derive the value of a variable, based on the value of the other variable. 
 
-After the Simple linear regression formula is found, the scatter plot is recreated and the line plotted above that. 
+Two functions are created in the program: each function calculates the values of slope and intercept related to the ideal line highlighting a trend in the data. The **slope** (or grandient) indicates how steep the line is, while the **intercept** is the value of y when x=0 ([Data Science - Slope and Intercept](https://www.w3schools.com/datascience/ds_linear_slope.asp)). Once these values are found, it is possible to derive the equation of Simple linear regression, and plot the line. Based on this equation, and if this equation is accurate, it would be possible to roughly derive the value of a variable, based on the value of the other variable.
+
+Together with slope and intercept, the **coefficient of determination $R^2$** is calculated to verify if the equation of Simple Linear Regression is accurate.
+
+After the Simple linear regression formulas as found, the scatter plots are recreated and the lines plotted above. 
 
 A function at the end of the program executes both functions and saves the plots to image files. 
 
+
 **About the regression lines**
-Calculating simple linear regression and plotting the line on the scatter plots highlights the following points: 
 
-**Sepal** It does not look like the line fits the data accurately: most samples are quite far from the line. In this case, Simple Linear Regression is used to highlight (or not) a trend in the data, and not to predict values. If the goal was to predict values, however, it would be possible to verify the accuracy of the equation calculating the root mean squared error ([Linear Regression (Accuracy)](https://www.kaggle.com/discussions/questions-and-answers/62086)) or using the coefficient of determination $R^2$ ([Coefficient of Determination (R²) | Calculation & Interpretation](https://www.kaggle.com/discussions/questions-and-answers/62086)). 
+Calculating Simple linear regression is normally used to predict values, for example, predict the value of a dependent variable based on the value of an independent variable. In this case, however, Simple linear regression is used to highlight a trend in the data, and see if values could be predicted. In particular, the plots show that: 
 
-Explain what it highlights 
-- no trend in Sepal
-- positive and direct correlation in Petal  
+- It would not be possible to predict values based on **Sepal length and Sepal width**. In this case, the line visibly does not fit the data. Most samples in the scatter plot are very far from the line, which means that the line is not representative of the data. 
+- It could be possible to make predictions about ***Petal length and Petal width**, because there is a positive  and direct correlation between the two variables. In my opinion, it could be possible to roughly predict the value of a dependent variable based on an independent variable, or to predict the class, based on the value of both variables. 
+
+Finally, the **coefficient of determination $R^2$** ([Coefficient of Determination (R²) | Calculation & Interpretation](https://www.kaggle.com/discussions/questions-and-answers/62086)), allows to verify the accuracy of the Regression equation. The coefficient of determination is a number between 0 and 1, and tells how accurately a model can predict an output: 
+- If $R^2$ = 0, the model cannot predict an outcome.
+- If 0 < $R^2$ < 1, the model can partially predict an outcome.
+- If $R^2$ = 1, the model can perfectly predict an outcome. 
+
+The coefficients of determination in this case are: 
+- **Sepal**: 0.01. It confirms that the equation cannot be used to make predictions. 
+- **Petal**: 0.93. Althogh not perfectly, the equation can be used to make predictions.  
+
+Note: another way of calculting Simple Linear Regression is through [numpy.polyfit](https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html). Another way to verify the accuracy of a Simple linear regressin model would be through root mean squared error ([Linear Regression, accuracy](https://www.kaggle.com/discussions/questions-and-answers/62086)). 
+
 
 ### 7. Heatmap 
+
+Module: heatmap.py
+
 
 **What it does** 
 
@@ -279,17 +315,57 @@ Heatmap.py uses Numpy to calculate Pearson's correlation coefficients for each p
 Based on the resulting correlation matrix, it creates a heatmap highlighting the correlation amoung all features. The program also prints the correlation matrix to a .csv file, for further reference. 
 
 
+**How it works** 
+
+Pearson's correlation coefficients for each pair of features in the dataset are calculated using [numpy.corrcoef](https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html). With numpy.corrcoef(), it is possible to provide as paramteres 1-D or 2-D arrays, and calculate the correlation between more than two sets of values at the same time. In this case, correlation coefficients are calculated for all four features at the same time: the x value is a NumPy 2-D array where each feature is a column of values.
+
+Then, the resulting matrix is used to plot a heatmap showing the correlations. Finally, two functions are created to save the heatmap to a image file, and the correlation matrix to a .csv file through Pandas. 
+
+Note: Correlation coefficients can be calculated in multiple ways, using NumPy, SciPy, or Pandas (source: [Real Python](https://realpython.com/numpy-scipy-pandas-correlation-python/#heatmaps-of-correlation-matrices)).
+
+
 **About the heatmap**
 
-Calculate Pearson's correlation coefficient between the features 
-show the correlation betwewn the features, and highlight if there is a positive or negative correlation, or no correlation at all. 
+**Pearson's correlation coefficient** is a number between -1 and 1 that measures the linear correlation between two sets of data (source: [wikipedia](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)). In other words, it tells the strength and direction of the relationship between two variables, which means that it reflects how similar the measurements of two variables are across a dataset. (source: [scribbr.com](https://www.scribbr.com/statistics/correlation-coefficient/#:~:text=A%20correlation%20coefficient%20is%20a,variables%20are%20across%20a%20dataset)). In particular:
+
+- a correlation between 0 and 1, is a positive correlation. This means that y values increase, when x values increase. A correlation of 1 is a perfect positive linear relationship.
+- a correlation o 0 means that there is no correlation between the features.
+correlation between 0 and -1 is a negative correlation. It means that when x values increase, y values decrease. - A correlation of -1 is a perfect negative linear relationship. (source: [Linear Correlation, Real Python](https://realpython.com/numpy-scipy-pandas-correlation-python/#linear-correlation)). 
+
+The heatmap plotted from the correlation matrix shows that: 
+
+- **Sepal length, Petal length and Petal width** have a positive correlation with each other. The scatter plot on Petal length vs Petal width (task 5) had already highlighted a direct and positive correlation between these two features, but the heatmap shows that there is some positive correlation between Sepal length and Petal length/Petal width, as well.
+- **Sepal width** is the only feature which has a negative correlation with the other features. It looks like the bigger the petal is, and longer the sepal, the thinner the sepal width is.
 
 
-### 7. Heat map 
+### 9. Pairplot: Project conclusions 
 
-### 8. Line fitting 
+module: pairplot.py
 
-### 9. Pairplot 
+
+**What it does**
+
+This program creates a pairplot showing the relationship that each featrure has with the other features in the dataset. 
+
+**How it works**
+The code load the iris dataset. Then it uses Pandas and Seaborn to plot a pairplot and save it to a png file. 
+
+The pairplot includes multiple scatter plots showing the relationship that each feature has with any of the other features. Each row and each column of the plot correspond to a feature. That feature is plotted on the y ax (when in the row) or on the x ax (when in the column), while another feature is plotted on the other ax. Diagonally, where a variable would be plotted with itself, instead of the scatter plot, "a univariate distribution plot is drawn to show the marginal distribution of the data in each column" Source: [seaborn.paiplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html). 
+
+
+**About the plot: Project conclusions**
+
+The pairplot seems to confirm many of the trends observed in the analysis: 
+
+- **Feature correlation.** As shown by the heatmap, there seems to be a positive direct correlation beteen Sepal length, Petal length and Petal width. Setosa species are smaller, than dimensions increase for Versicolor and then Virginica species. On the other hand, the smaller these features, the higher is the last feature, Sepal Width. Setosa species have the highest Sepal width dimensions, while the value is lower for Versicolor and Virginica species.
+
+- **Feature similarity.** Iris Veriscolor and Iris Virginica tend to have more similar features, in some cases with overlapping characteristics, while it is always easier to distinguish Irish Setosa samples.
+
+- **Sepal size** seems to be the feature couple with the least degree of correlation -- that is, almost none. Based on the two variables Sepal length and Sepal width, it would not be possible to predict with certainty which class a sample belongs to. However, it might be possible to predict if a sample belongs or not to the Setosa species, since that's the only class whose samples can be distinguished from the others.
+
+- **Petal size.** As already pointed out in the analysis, between Petal length and Petal width there is such a correlation that, based on these variables, it would be possible to predict which species a sample belongs to.
+
+
 
 
 ## IV. References 

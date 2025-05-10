@@ -3,11 +3,13 @@
 
 from modules.read_dataset import read
 from modules.summary import summary
-from modules.histograms import plot_histograms
+#from modules.histograms import plot_histograms
 from modules.scatter import save_scatter
 from modules.boxplots import save_boxplots 
 from modules.heatmap import save_heatmap, save_correlation_matrix
 from modules.linear_regression import save_regression
+from modules.pairplot import save_pairplot
+from test import save_histograms
 import os 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -35,7 +37,7 @@ summary(summary_path)
 # 3. Plot histograms for each feature, and save them as .pgn files in a folder called 'plots'. 
 # set the path to save the plots
 hist_path = os.path.join(plot_dir, '03')
-plot_histograms(hist_path)
+save_histograms(hist_path)
 
 # 4. Plot boxplots for each feature and save them as .png files in a folder called 'plots'.
 # set the path to save the boxplots
@@ -57,6 +59,10 @@ save_regression(regression_path)
 corr_path = os.path.join(plot_dir, '07')
 save_heatmap(corr_path)
 save_correlation_matrix(corr_path)
+
+# 8. Create a pairplot of the Iris dataset and save it as a .png file in a folder called 'plots'.
+pairplot_path = os.path.join(plot_dir, '08')
+save_pairplot(pairplot_path)
 
 
 

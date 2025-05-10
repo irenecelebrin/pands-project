@@ -41,6 +41,7 @@ def read():
             your_key = input('Please enter a valid key from the dataset:\n')
 
 
+# test the function 
 if __name__ == '__main__':
     read()
 

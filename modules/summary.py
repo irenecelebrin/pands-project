@@ -1,6 +1,7 @@
 # Summary 
 # Get the summary of the variables in the iris dataset and save the data to a text file.
 
+# import require libraries 
 import numpy as np 
 import pandas as pd
 from sklearn.datasets import load_iris

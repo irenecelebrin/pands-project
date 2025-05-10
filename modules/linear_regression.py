@@ -26,13 +26,15 @@ colormap_petal = np.array(['orchid', 'mediumvioletred', 'pink'])
 
 def sepal_regression():
 
-    # Calculate linear regression for sepal length vs sepal width. From there, extract slope and intercept.
+    # Calculate linear regression for sepal length vs sepal width. From there, extract slope and intercept. Add coefficient of determination (R^2).
+    # Source: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html#scipy.stats.linregress
     sepal_res = sp.stats.linregress(sepal_length, sepal_width)
     slope_sepal = sepal_res.slope
     intercept_sepal = sepal_res.intercept
+    R2_sepal = sepal_res.rvalue**2
 
-    # Get line equation: y = mx + c, where m is the slope and c is the intercept.
-    sepal_equation = f'W = {slope_sepal:.2f}L + {intercept_sepal:.2f}'
+    # Get line equation: y = mx + c, where m is the slope and c is the intercept. Add coefficient of determination R^2.
+    sepal_equation = f'W = {slope_sepal:.2f}L + {intercept_sepal:.2f}\n$R^2$ = {R2_sepal:.2f}'
     
     # Re-create the scatter plot from 5. Source: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
     fig, ax = plt.subplots()
@@ -71,15 +73,14 @@ def sepal_regression():
 
 def petal_regression(): 
 
-    # Calculate linear regression for petal length vs petal width. From there, extract slope and intercept.
+    # Calculate linear regression for petal length vs petal width. From there, extract slope and intercept and coefficient of determination (R^2).
     petal_res = sp.stats.linregress(petal_length, petal_width)
     slope_petal = petal_res.slope
     intercept_petal = petal_res.intercept
+    r2_petal = petal_res.rvalue**2
 
-    print 
-
-    # Get line equation: y = mx + c, where m is the slope and c is the intercept.
-    petal_equation = f'W = {slope_petal:.2f}L + {intercept_petal:.2f}'
+    # Get line equation: y = mx + c, where m is the slope and c is the intercept. Add coefficient of determination R^2.
+    petal_equation = f'W = {slope_petal:.2f}L + {intercept_petal:.2f}\nR^2 = {r2_petal:.2f}'
 
     # Recreate the scatter plot from 5. 
     fig, ax = plt.subplots()
