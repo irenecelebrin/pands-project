@@ -191,7 +191,8 @@ Reference: [matplotlib.pyplot.hist](https://matplotlib.org/stable/api/_as_gen/ma
 
 After loading the dataset, the features are extracted slicing the numpy array *data*. Then, lists are created to set the colors for each plot. Finally, histograms are plotted iterating Matplotlib functions for each feature (creating the plot, adding labels and title, and saving the plot). 
 
-A **stateful approach** is used on Matplotlib, using pyplot to store the information related to each plot (source: [Matplotlib essentials](https://medium.com/@The_Gambitier/matplotlib-essentials-e376ed954201)). 
+
+A **stateless approach** (or object-oriented) (vs stateful) is used on Matplotlib. This means that pyplot is not used to store the information related to each plot, but this information is stored through variables (objects). In this case, I decided to do it in order to plot and then save the data through iterations (for loops), and in different functions. About stateful vs stateless approach: [Matplotlib essentials](https://medium.com/@The_Gambitier/matplotlib-essentials-e376ed954201). 
 
 
 **About the histograms** 
@@ -313,6 +314,7 @@ Module: heatmap.py
 
 Heatmap.py uses Numpy to calculate Pearson's correlation coefficients for each pair of features in the dataset. 
 Based on the resulting correlation matrix, it creates a heatmap highlighting the correlation amoung all features. The program also prints the correlation matrix to a .csv file, for further reference. 
+About heatmaps: [Annotated heatmap](https://matplotlib.org/stable/gallery/images_contours_and_fields/image_annotated_heatmap.html#sphx-glr-gallery-images-contours-and-fields-image-annotated-heatmap-py). 
 
 
 **How it works** 
@@ -345,7 +347,7 @@ module: pairplot.py
 
 **What it does**
 
-This program creates a pairplot showing the relationship that each featrure has with the other features in the dataset. 
+This program uses Seaborne to create a pairplot showing the relationship that each featrure has with the other features in the dataset. About paiplots: [seaborn.pairplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html). 
 
 **How it works**
 The code load the iris dataset. Then it uses Pandas and Seaborn to plot a pairplot and save it to a png file. 
@@ -364,7 +366,6 @@ The pairplot seems to confirm many of the trends observed in the analysis:
 - **Sepal size** seems to be the feature couple with the least degree of correlation -- that is, almost none. Based on the two variables Sepal length and Sepal width, it would not be possible to predict with certainty which class a sample belongs to. However, it might be possible to predict if a sample belongs or not to the Setosa species, since that's the only class whose samples can be distinguished from the others.
 
 - **Petal size.** As already pointed out in the analysis, between Petal length and Petal width there is such a correlation that, based on these variables, it would be possible to predict which species a sample belongs to.
-
 
 
 

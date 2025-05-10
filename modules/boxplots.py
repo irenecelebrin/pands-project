@@ -44,10 +44,13 @@ def plot_boxplots():
     ax.set_xlabel('Features')
     ax.set_ylabel('Measure (in cm)')
 
+# save plot to png file 
 def save_boxplots(plot_path):
     plot_boxplots()
     plt.savefig(f'{plot_path}_boxplots.png', dpi=300, bbox_inches='tight')
 
+
+# test the function without saving the plot 
 if __name__ == '__main__':
     plot_boxplots()
     plt.show()

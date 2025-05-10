@@ -3,16 +3,13 @@
 
 from modules.read_dataset import read
 from modules.summary import summary
-#from modules.histograms import plot_histograms
+from modules.histograms import save_histograms
 from modules.scatter import save_scatter
 from modules.boxplots import save_boxplots 
 from modules.heatmap import save_heatmap, save_correlation_matrix
 from modules.linear_regression import save_regression
 from modules.pairplot import save_pairplot
-from test import save_histograms
 import os 
-import matplotlib.pyplot as plt
-import pandas as pd
 
 
 # Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34

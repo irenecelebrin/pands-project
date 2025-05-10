@@ -1,6 +1,7 @@
 # Scatter plots 
 # This script allows to create scatter plots analysing the relationships between the features of the iris dataset: 
 # sepal length vs sepal width, petal length vs petal width.
+# Official documentation: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
 
 # import required modules: sklearn.datasets, matplotlib.pyplot, numpy, os 
 from sklearn.datasets import load_iris
@@ -23,6 +24,7 @@ petal_width = iris.data[:, 3]
 colormap_sepal = np.array(['palegreen', 'limegreen', 'green'])
 colormap_petal = np.array(['orchid', 'mediumvioletred', 'pink'])
 
+# plot scatter plot for sepal length vs sepal width
 def scatter_sepal():
 
     # Plotting the data 
@@ -53,7 +55,7 @@ def scatter_sepal():
     ax.set_yticks(np.arange(2.25,4.75,0.5), minor=True)
     ax.grid(which='minor', color='gray', linestyle='--', linewidth=0.25, alpha=0.5)
 
-
+# plot scatter plot for petal length vs petal width
 def scatter_petal():
 
     # PETAL LENGTH vs PETAL WIDTH   
@@ -80,8 +82,16 @@ def scatter_petal():
     ax.grid(which='minor', color='gray', linestyle='--', linewidth=0.25, alpha=0.5)
 
 
+# create a function to save both plots to png files 
 def save_scatter(plot_path):
     scatter_sepal()
     plt.savefig(f'{plot_path}_sepal.png', dpi=300, bbox_inches='tight')
     scatter_petal()
     plt.savefig(f'{plot_path}_petal.png', dpi=300, bbox_inches='tight')
+
+# test the function without saving the plot
+if __name__ == '__main__':
+    scatter_sepal()
+    plt.show()
+    scatter_petal()
+    plt.show()

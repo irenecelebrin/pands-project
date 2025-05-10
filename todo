@@ -1,6 +1,6 @@
 My to do list:  
 
-1) Research the dataset
+1) Research the dataset [DONE]
 
 2) [DONE] add dataset to project repo. hitml? csv?   
 
@@ -26,7 +26,7 @@ Target:
 
 6) **scatter_plots.py** investigate the dataset. generate scatter plots and save them. DONE 
 
-7) **Line fitting** Fit a line 
+7) **Line fitting** Fit a line DONE
 
 8) 9) **Boxplots of petal width** 
 
@@ -34,9 +34,9 @@ Target:
 
 
 
-10) **Pairplot**
+10) **Pairplot** DONE
 
-20) **analyse.py** plug all modules in the main file
+20) **analyse.py** plug all modules in the main file [DONE]
 
 21) **raise errors and add logging** in analyse.py 
 

@@ -1,7 +1,7 @@
 # Read dataset 
 # Explore the iris dataset. Print the properties of the dataset in the console.  
 
-# Import libraries 
+# Import requireed libraries 
 from sklearn.datasets import load_iris
 import pandas as pd 
 
@@ -20,12 +20,11 @@ def read():
     print("Feature names:\t\t", iris.feature_names)
     print("Target names:\t\t", iris.target_names)
 
-    # Load the iris dataset into a pandas dataframe to preview the data in a tabular format 
-    df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
-    # Add the target column to the dataframe
-    df['target'] = iris.target
+    # Load the iris dataset into a pandas dataframe to preview the data in a tabular format. 
+    # This is possible setting the as_frame parameter to True when loading the dataset, and using the key 'frame', which outputs the data+target as pandas dataframe 
+    df_iris = iris.frame
     # Display the first 5 rows of the dataset. 
-    print(f'The data looks like this:\n{df.head(5)}')
+    print(f'The data looks like this:\n{df_iris.head(5)}')
 
     # Print the keys of the dataset 
     print('Moreover, the datase contains the following information (keys):\n', iris.keys())

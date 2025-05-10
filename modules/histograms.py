@@ -1,11 +1,12 @@
 # Histograms 
 # This scripts creates histograms for all the features in the iris dataset, and daves them to .png files. 
+# Official documentation: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html
 
 # imported required libraries
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 
-# plot histograms. source: https://matplotlib.org/stable/gallery/statistics/hist.html
+# plot histograms. 
 def create_histograms():
     # Load iris dataset 
     iris = load_iris()

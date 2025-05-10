@@ -1,5 +1,6 @@
 # Heatmap 
 # This script allows to calculate Pearson correlation coefficients between the features of the iris dataset and plot a heatmap.
+# Official documenataion: https://matplotlib.org/stable/gallery/images_contours_and_fields/image_annotated_heatmap.html#sphx-glr-gallery-images-contours-and-fields-image-annotated-heatmap-py
 
 # import required modules: sklearn.datasets, matplotlib.pyplot, numpy, os 
 from sklearn.datasets import load_iris
@@ -17,6 +18,7 @@ feature_labels = iris.feature_names
 # Source: https://numpy.org/doc/2.2/reference/generated/numpy.corrcoef.html
 correlation_matrix = np.corrcoef(iris.data, rowvar=False).round(decimals=2)
 
+# plot heatmap 
 def heatmap():
 
     # Create subplot and plot 
@@ -41,11 +43,13 @@ def heatmap():
     cbar = ax.figure.colorbar(im, ax= ax, format='% .2f')
     cbar.set_label("Pearson's correlation coefficient", rotation=270, labelpad=20)
 
+# save heatmap as png file 
 def save_heatmap(plot_path):
     heatmap()
     # save the plot as a png file in the 'plots' folder
     plt.savefig(f'{plot_path}_heatmap', dpi=300, bbox_inches='tight')
 
+# save correlation matrix as csv file
 def save_correlation_matrix(plot_path):    
     # Create a pandas DataFrame from the correlation matrix
     df = pd.DataFrame(correlation_matrix, columns=feature_labels, index=feature_labels)
@@ -53,7 +57,7 @@ def save_correlation_matrix(plot_path):
     # Save the DataFrame to a CSV file
     df.to_csv(f'{plot_path}_correlation', index=True)
 
-
+# test the heatmap function without saving the plot 
 if __name__ == "__main__":
     heatmap()
     plt.show()

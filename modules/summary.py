@@ -3,7 +3,6 @@
 
 # import require libraries 
 import numpy as np 
-import pandas as pd
 from sklearn.datasets import load_iris
 
 
@@ -75,10 +74,11 @@ def dependent_variables_summary(summary_path):
         variable.write(f'Target values:\t{target_values}\n')
         variable.write('\n')
 
-
+# execute both functions together 
 def summary(summary_path): 
     independent_variables_summary(summary_path)
     dependent_variables_summary(summary_path)
 
+# run the script and save test in the directory 
 if __name__ == '__main__':  
-    summary('summary.txt')
+    summary('test_summary.txt')

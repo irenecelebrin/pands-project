@@ -2,6 +2,7 @@
 # This script calculates linear regression for both scatter plots (Petal, Sepal). It uses Scipy to find the slope and intercept of a line that best fits the data. It then plots the data points and the fitted line.
 # Official documentation on SciPy: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html
 
+# import required libraries 
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -24,6 +25,7 @@ petal_width = iris.data[:, 3]
 colormap_sepal = np.array(['palegreen', 'limegreen', 'green'])
 colormap_petal = np.array(['orchid', 'mediumvioletred', 'pink'])
 
+# Calculate simple linear regression for Sepal, and plot the data points and the fitted line.
 def sepal_regression():
 
     # Calculate linear regression for sepal length vs sepal width. From there, extract slope and intercept. Add coefficient of determination (R^2).
@@ -67,10 +69,7 @@ def sepal_regression():
     ax.set_ylabel('Sepal width (W)')
     ax.set_title('Iris Sepal: regression line')
 
-    # save the plot to a png file 
-    #plt.savefig(f'{path_plot}_sepal_regression.png')
-
-
+# Calculate simple linear regression for Petal, and plot the data points and the fitted line.
 def petal_regression(): 
 
     # Calculate linear regression for petal length vs petal width. From there, extract slope and intercept and coefficient of determination (R^2).
@@ -85,7 +84,6 @@ def petal_regression():
     # Recreate the scatter plot from 5. 
     fig, ax = plt.subplots()
     # PETAL LENGTH vs PETAL WIDTH   
-
     # Repeat the same steps, but using for ax x petal length, for ax y petal width, as as colormapa colormap_petal
     plot = ax.scatter(petal_length,petal_width, c=colormap_petal[iris.target], marker='8')
 
@@ -111,6 +109,7 @@ def petal_regression():
     ax.set_ylabel('Petal width (W)')
     ax.set_title('Iris Petal: regression line') 
 
+# save the plots as png files.
 def save_regression(path_plot):
     sepal_regression()
     plt.savefig(f'{path_plot}_sepal_regression.png', dpi=300, bbox_inches='tight')
@@ -118,4 +117,9 @@ def save_regression(path_plot):
     plt.savefig(f'{path_plot}_petal_regression.png', dpi=300, bbox_inches='tight')
 
 
-
+# test the functions withouth saving the plots 
+if __name__ == "__main__":
+    sepal_regression()
+    plt.show()
+    petal_regression()
+    plt.show()
