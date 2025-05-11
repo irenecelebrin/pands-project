@@ -260,10 +260,10 @@ In the first functions, the datased is loaded, the data array sliced to extract 
 
 **About the scatter plots**
 
-Scatter plots are used to investigate if there is a relationship between two given variables, and verify if one variable can be used to predict the other (source: [What is a scatter plot](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html)). In this case, they can also highlight if class distribution is meaningful, i.e. if based on the two variables it is possible to predict the class of a given sample. 
+Scatter plots are used to investigate if there is a relationship between two given variables, and verify if one variable can be used to predict the other (source: [Scatter Plot](https://www.geeksforgeeks.org/scatter-plot/)). In this case, they can also highlight if class distribution is meaningful, i.e. if based on the two variables it is possible to predict the class of a given sample. 
 
 **Sepal.**
-The Sepal scatter plot shows that Iris Setosa has smaller Sepal length but greater width, while Versicolor and Virgina have greater length and lower width ([Exploratory data analysis: iris dataset](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html)). 
+The Sepal scatter plot shows that Iris Setosa has smaller Sepal length but greater width, while Versicolor and Virgina have greater length and lower width ([Exploratory data analysis: iris dataset](https://medium.com/analytics-vidhya/exploratory-data-analysis-iris-dataset-4df6f045cda)). 
 This trend makes it easy to distinguish Setosa species from the others. On the other hand, Iris Versicolor and Iris Virginica look quite similar and can't be easily distinguished one from the other. The only difference is that Versicolor samples tend to have smaller dimensions (they are mostly located in the lower part of the plot, on the left), while Virginica samples seem to have longer Sepal length (samples are more frequent in the lower part of the plot, but on the right). 
 
 It is already clear that there is little correlation between the two features. Based on one of the two variables, it would not be possible to predict the value of the other variable. Also, based exclusively on Sepal length and Sepal width, it would not be possible to predict which species a sample belongs to. However, it could be possible to predict if a species is a Setosa or not. 
@@ -407,12 +407,15 @@ Irene Celebrin
 
 ## IV. References 
 
-README, About the dataset 
+About the dataset 
+
 https://en.wikipedia.org/wiki/Iris_flower_data_set 
 
 https://en.wikipedia.org/wiki/Linear_discriminant_analysis 
 
-https://scikit-learn.org/1.4/auto_examples/datasets/plot_iris_dataset.html
+http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
+
+https://www.kaggle.com/code/lalitharajesh/iris-dataset-exploratory-data-analysis
 
 https://www.kaggle.com/datasets/uciml/iris/data
 
@@ -428,16 +431,120 @@ https://archive.ics.uci.edu/dataset/53/iris
 
 https://www.kaggle.com/code/kostasmar/exploring-the-iris-data-set-scikit-learn
 
+https://www.geeksforgeeks.org/How-to-convert-sklearn-dataset-to-pandas-dataframe-in-python/ 
+
 Summary 
+
+https://numpy.org/doc/stable/reference/generated/numpy.size.html
+
+https://numpy.org/doc/stable/reference/generated/numpy.unique.html
+
+https://numpy.org/doc/stable/reference/generated/numpy.min.html
+
+https://numpy.org/doc/stable/reference/generated/numpy.max.html
+
+https://numpy.org/doc/stable/reference/generated/numpy.mean.html
+
+https://numpy.org/doc/stable/reference/generated/numpy.std.html
+
+https://numpy.org/doc/stable/reference/generated/numpy.median.html
+
+https://numpy.org/doc/stable/reference/generated/numpy.quantile.html
+
+https://en.wikipedia.org/wiki/Arithmetic_mean
+
+https://en.wikipedia.org/wiki/Median
+
+https://en.wikipedia.org/wiki/Standard_deviation
+
+https://en.wikipedia.org/wiki/Quartile
+
+https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/
+
 
 Histograms 
 
+https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html
+
+https://medium.com/@The_Gambitier/matplotlib-essentials-e376ed954201 
+
+https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/
+
+
 Boxplots 
+
+https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html
 
 Scatter
 
+https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html
+
+https://www.geeksforgeeks.org/scatter-plot/
+
+https://medium.com/analytics-vidhya/exploratory-data-analysis-iris-dataset-4df6f045cda 
+
+
+
 Linear Regression 
 
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html
+
+https://www.w3schools.com/datascience/ds_linear_slope.asp
+
+https://www.kaggle.com/discussions/questions-and-answers/62086
+
+https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html
+
+https://www.kaggle.com/discussions/questions-and-answers/62086
+
+
+
 Heatmap 
+
+https://matplotlib.org/stable/gallery/images_contours_and_fields/image_annotated_heatmap.html#sphx-glr-gallery-images-contours-and-fields-image-annotated-heatmap-py
+
+https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html 
+
+https://realpython.com/numpy-scipy-pandas-correlation-python/#heatmaps-of-correlation-matrices
+
+https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
+
+https://www.scribbr.com/statistics/correlation-coefficient/#:~:text=A%20correlation%20coefficient%20is%20a,variables%20are%20across%20a%20dataset
+
+https://realpython.com/numpy-scipy-pandas-correlation-python/#linear-correlation
+
+Pairplot 
+
+https://seaborn.pydata.org/generated/seaborn.pairplot.html
+
+https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/
+
+https://medium.com/analytics-vidhya/exploratory-data-analysis-iris-dataset-4df6f045cda
+
+https://www.angela1c.com/projects/iris_project/investigating-the-iris-dataset/
+
+
+Previous analyses
+
+https://scikit-learn.org/stable/auto_examples/decomposition/plot_pca_iris.html 
+
+https://scikit-learn.org/1.4/auto_examples/datasets/plot_iris_dataset.html 
+
+https://www.kaggle.com/code/mrdheer/beginner-s-guide-to-iris-dataset/code 
+
+https://eminebozkus.medium.com/exploring-the-iris-flower-dataset-4e000bcc266c
+
+http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
+
+https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/
+
+https://medium.com/analytics-vidhya/linear-regression-using-iris-dataset-hello-world-of-machine-learning-b0feecac9cc1 
+
+https://medium.com/@nirajan.acharya777/exploratory-data-analysis-of-iris-dataset-9c0df76771df
+
+
+
+
+
 
 
