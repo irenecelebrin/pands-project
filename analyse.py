@@ -10,17 +10,22 @@ from modules.heatmap import save_heatmap, save_correlation_matrix
 from modules.linear_regression import save_regression
 from modules.pairplot import save_pairplot
 import os 
+import logging
 
-
+logger = logging.getLogger(__name__)
 # Create the directory to save the plots in pands-project. Source: https://chatgpt.com/share/68179c6d-cd20-800f-8473-58e28f06aa34
 # Get the directory where this script is located
-script_dir = os.path.dirname(os.path.abspath(__file__))
+try: 
+    script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Define the path to the 'plots' folder inside the repo
-plot_dir = os.path.join(script_dir, 'plots')
+    plot_dir = os.path.join(script_dir, 'plots')
 
 # Create the folder if it doesn't exist
-os.makedirs(plot_dir, exist_ok=True)
+    os.makedirs(plot_dir, exist_ok=True)
+except Exception as e:
+    logger.debug(f"Error creating directory: {e}")
+    exit()
 
 # 1. print in the console some information about the dataset. Enter a key to explore the dataset.
 # Exit the program entering a blank value 
